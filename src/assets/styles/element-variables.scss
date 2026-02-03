@@ -1,0 +1,48 @@
+// Element Plus 主题变量定制 - 引用 SCSS 变量(已映射到 CSS 变量)
+@use "./variables.scss" as *;
+
+// 不要在这里直接使用 var(),因为 EP 的 SCSS 混合宏可能需要真正的颜色值(编译时)
+// 如果 EP SCSS 编译失败,我们需要在 index.scss 中通过 CSS 变量覆盖机制来处理
+
+// 主题色
+$--color-primary: $primary-color !default;
+$--color-success: $success-color !default;
+$--color-warning: $warning-color !default;
+$--color-danger: $danger-color !default;
+$--color-info: $info-color !default;
+
+// 文本颜色
+$--color-text-primary: $text-primary !default;
+$--color-text-regular: $text-regular !default;
+$--color-text-secondary: $text-secondary !default;
+$--color-text-placeholder: $text-placeholder !default;
+
+// 边框颜色
+$--border-color-base: $border-base !default;
+$--border-color-light: #e4e7ed !default;
+$--border-color-lighter: #ebeef5 !default;
+$--border-color-extra-light: #f2f6fc !default;
+
+// 背景色
+$--background-color-base: $bg-page !default;
+$--color-white: #ffffff !default;
+$--color-black: #000000 !default;
+
+// 字体相关保持不变...
+$--font-size-base: 14px !default;
+$--font-size-small: 13px !default;
+$--font-size-large: 18px !default;
+$--font-size-extra-large: 20px !default;
+
+// 圆角
+$--border-radius-base: $border-radius-base !default;
+$--border-radius-small: 2px !default;
+$--border-radius-round: 20px !default;
+$--border-radius-circle: 100% !default;
+
+// 阴影
+$--box-shadow-base: $box-shadow-base !default;
+$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+
+// 字体路径
+$--font-path: '~element-plus/theme-chalk/fonts' !default;
