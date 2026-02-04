@@ -20,11 +20,6 @@ const staticRoutes = [
     meta: {
       title: '页面不存在'
     }
-  },
-  // 404 通配符路由,必须放在最后
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/404'
   }
 ]
 

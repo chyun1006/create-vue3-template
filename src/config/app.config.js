@@ -1,8 +1,6 @@
 export const APP_CONFIG = {
   systemCode: 'air.budget',
-  systemName: '',
-  version: '1.0.0'
+  systemName: ''
 }
 
-export const TOKEN_NAME = "Access-Token"
-
+export const TOKEN_NAME = 'Access-Token'
