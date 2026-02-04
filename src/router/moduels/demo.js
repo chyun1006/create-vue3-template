@@ -1,3 +1,5 @@
+import { LayoutDashboard, Users, MessageSquare, Table2 } from 'lucide-vue-next'
+
 export default [
   {
     path: '/demo',
@@ -5,7 +7,7 @@ export default [
     component: () => import('@/layouts/MainLayout.vue'),
     meta: {
       title: 'demo',
-      icon: 'House',
+      icon: LayoutDashboard,
       requiresAuth: false
     },
     redirect: '/all',
@@ -16,7 +18,7 @@ export default [
         component: () => import('@/views/demo/index.vue'),
         meta: {
           title: '示例页面',
-          icon: 'User',
+          icon: Users,
           requiresAuth: true
           // permission: ['123']
         }
@@ -27,7 +29,7 @@ export default [
         component: () => import('@/views/demo/modal.vue'),
         meta: {
           title: '弹窗示例',
-          icon: 'UserFilled',
+          icon: MessageSquare,
           requiresAuth: true
         }
       },
@@ -37,7 +39,7 @@ export default [
         component: () => import('@/views/demo/table.vue'),
         meta: {
           title: '表格示例',
-          icon: 'Grid',
+          icon: Table2,
           requiresAuth: true
         }
       }

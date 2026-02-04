@@ -30,7 +30,7 @@
                     <!-- 自定义状态列表头 -->
                     <template #statusHeader>
                         <el-icon style="margin-right: 4px">
-                            <InfoFilled />
+                            <Info />
                         </el-icon>
                         <span>状态信息</span>
                     </template>
@@ -97,7 +97,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { InfoFilled } from '@element-plus/icons-vue'
+import { Info } from 'lucide-vue-next'
 import { ElMessage } from 'element-plus'
 
 // ========== 数据定义 ==========

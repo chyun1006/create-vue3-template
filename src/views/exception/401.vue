@@ -3,7 +3,7 @@
         <div class="exception-content">
             <div class="exception-icon">
                 <el-icon :size="120" color="#409eff">
-                    <WarningFilled />
+                    <ShieldAlert :size="120" />
                 </el-icon>
             </div>
             <h1 class="exception-title">401</h1>
@@ -18,7 +18,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { WarningFilled } from '@element-plus/icons-vue'
+import { ShieldAlert } from 'lucide-vue-next'
 
 const router = useRouter()
 

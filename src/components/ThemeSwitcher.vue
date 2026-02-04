@@ -3,7 +3,7 @@
         <el-dropdown @command="handleThemeChange">
             <el-button>
                 <el-icon>
-                    <Brush />
+                    <Palette />
                 </el-icon>
                 <span class="ml-2">{{ currentThemeLabel }}</span>
             </el-button>
@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { Brush } from '@element-plus/icons-vue'
+import { Palette } from 'lucide-vue-next'
 import { themeManager, themes } from '@/utils/theme'
 import { ElMessage } from 'element-plus'
 

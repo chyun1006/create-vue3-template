@@ -2,7 +2,7 @@
     <div class="header-container">
         <div class="header-left">
             <el-icon class="hamburger" @click="toggleSidebar">
-                <component :is="isCollapsed ? 'Expand' : 'Fold'" />
+                <component :is="isCollapsed ? PanelLeftOpen : PanelLeftClose" />
             </el-icon>
 
             <el-breadcrumb separator="/">
@@ -13,14 +13,14 @@
 
         <div class="header-right">
             <!-- 主题切换器 -->
-            <theme-switcher class="mr-4" />
+            <!-- <theme-switcher class="mr-4" /> -->
 
             <el-dropdown @command="handleCommand" trigger="click">
                 <div class="user-info">
                     <el-avatar :size="32" class="user-avatar" :icon="User" />
                     <span class="username">{{ userInfo?.username }}({{ userInfo?.workId }})</span>
                     <el-icon class="arrow-icon">
-                        <CaretBottom />
+                        <ChevronDown />
                     </el-icon>
                 </div>
                 <template #dropdown>
@@ -40,9 +40,8 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppStore } from '@/stores/app'
-import { User, CaretBottom } from '@element-plus/icons-vue'
+import { User, ChevronDown, PanelLeftOpen, PanelLeftClose } from 'lucide-vue-next'
 import { ElMessage } from 'element-plus'
-import ThemeSwitcher from './ThemeSwitcher.vue'
 import { useUserStore } from '@/stores/user'
 import sso from '@/utils/sso'
 

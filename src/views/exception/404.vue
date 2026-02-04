@@ -3,7 +3,7 @@
         <div class="exception-content">
             <div class="exception-icon">
                 <el-icon :size="120" color="#f56c6c">
-                    <CircleCloseFilled />
+                    <FileQuestion :size="120" />
                 </el-icon>
             </div>
             <h1 class="exception-title">404</h1>
@@ -19,7 +19,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
-import { CircleCloseFilled } from '@element-plus/icons-vue'
+import { FileQuestion } from 'lucide-vue-next'
 
 const router = useRouter()
 

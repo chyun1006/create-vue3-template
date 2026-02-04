@@ -1,3 +1,5 @@
+import { Home } from 'lucide-vue-next'
+
 export default [
   {
     path: '/',
@@ -5,7 +7,7 @@ export default [
     component: () => import('@/layouts/MainLayout.vue'),
     meta: {
       title: '首页',
-      icon: 'House',
+      icon: Home,
       requiresAuth: false
     },
     redirect: '/home',
@@ -16,7 +18,7 @@ export default [
         component: () => import('@/views/Home.vue'),
         meta: {
           title: '首页',
-          icon: 'House',
+          icon: Home,
           requiresAuth: false
         }
       }
