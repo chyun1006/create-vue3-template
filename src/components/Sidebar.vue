@@ -22,12 +22,14 @@ import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import { getMenuConfig } from '@/config/router.config'
 import SidebarItem from './SidebarItem.vue'
+import { useUserStore } from '@/stores/user'
 
 const route = useRoute()
 const appStore = useAppStore()
+const userStore = useUserStore()
 
 const isCollapsed = computed(() => appStore.sidebarCollapsed)
-const menuList = computed(() => getMenuConfig())
+const menuList = computed(() => getMenuConfig(userStore.menus || []))
 const activeMenu = computed(() => route.path)
 </script>
 

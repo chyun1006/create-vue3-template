@@ -12,8 +12,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@airtravel/sso-login": "^1.0.0",
     "@element-plus/icons-vue": "^2.3.2",
-    "@tc-airTravel/ssoLogin": "1.0.3",
     "axios": "^1.6.0",
     "element-plus": "^2.5.0",
     "pinia": "^2.1.0",

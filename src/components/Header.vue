@@ -18,17 +18,18 @@
             <el-dropdown @command="handleCommand" trigger="click">
                 <div class="user-info">
                     <el-avatar :size="32" class="user-avatar" :icon="User" />
-                    <span class="username">管理员</span>
+                    <span class="username">{{ userInfo?.username }}({{ userInfo?.workId }})</span>
                     <el-icon class="arrow-icon">
                         <CaretBottom />
                     </el-icon>
                 </div>
                 <template #dropdown>
-                    <el-dropdown-menu>
+                    <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                    <!-- <el-dropdown-menu>
                         <el-dropdown-item command="profile">个人中心</el-dropdown-item>
                         <el-dropdown-item command="settings">设置</el-dropdown-item>
                         <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
+                    </el-dropdown-menu> -->
                 </template>
             </el-dropdown>
         </div>
@@ -42,10 +43,15 @@ import { useAppStore } from '@/stores/app'
 import { User, CaretBottom } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import ThemeSwitcher from './ThemeSwitcher.vue'
+import { useUserStore } from '@/stores/user'
+import sso from '@/utils/sso'
 
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
+
+const userStore = useUserStore()
+const userInfo = computed(() => userStore.userInfo)
 
 const isCollapsed = computed(() => appStore.sidebarCollapsed)
 const currentRoute = computed(() => route.meta.title || route.name)
@@ -56,13 +62,8 @@ const toggleSidebar = () => {
 
 const handleCommand = (command) => {
     switch (command) {
-        case 'profile':
-            ElMessage.info('个人中心')
-            break
-        case 'settings':
-            ElMessage.info('设置')
-            break
         case 'logout':
+            sso.logout();
             ElMessage.success('退出登录成功')
             router.push('/')
             break
