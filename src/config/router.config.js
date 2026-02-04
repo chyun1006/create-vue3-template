@@ -60,6 +60,17 @@ export const routerConfig = [
           menu: true,
           requiresAuth: true
         }
+      },
+      {
+        path: '/table',
+        name: 'table',
+        component: () => import('@/views/demo/table.vue'),
+        meta: {
+          title: '表格示例',
+          icon: 'Grid',
+          menu: true,
+          requiresAuth: true
+        }
       }
     ]
   }
