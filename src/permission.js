@@ -1,6 +1,6 @@
 import router from './router'
 import sso from './utils/sso'
-import { asyncRoutes } from './config/router.config'
+import { asyncRoutes } from './router'
 import { useUserStore } from './stores/user'
 
 router.beforeEach(async (to) => {
@@ -30,14 +30,12 @@ router.beforeEach(async (to) => {
     const token = sso.getToken()
     if (token) {
       // 根据权限过滤路由
-      const filteredRoutes = sso.filterRoutesByPermission(asyncRoutes);
+      const filteredRoutes = sso.filterRoutesByPermission(asyncRoutes)
       userStore.setMenus(filteredRoutes)
       userStore.setToken(token)
       userStore.setUserInfo(sso.getUserInfo())
       // 动态添加路由
-      filteredRoutes.forEach(route => router.addRoute(route));
-      // 添加 404 兜底
-      router.addRoute({ path: '/:pathMatch(.*)*', redirect: '/404' });
+      filteredRoutes.forEach((route) => router.addRoute(route))
       // 重新导航
       // return { ...to, replace: true };
     }

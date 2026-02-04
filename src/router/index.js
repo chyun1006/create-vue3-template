@@ -1,15 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainLayout from '@/layouts/MainLayout.vue'
-import { generateRoutes } from '@/config/router.config'
+import homeRoutes from './moduels/home'
+import demoRoutes from './moduels/demo'
 
-const routes = [
-  {
-    path: '/',
-    component: MainLayout,
-    redirect: '/',
-    children: generateRoutes()
-  },
-  // 异常页面路由(不使用 MainLayout)
+export const asyncRoutes = [...homeRoutes, ...demoRoutes]
+
+const staticRoutes = [
   {
     path: '/401',
     name: 'Error401',
@@ -35,7 +30,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes: [...staticRoutes]
 })
 
 export default router
