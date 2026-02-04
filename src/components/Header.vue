@@ -17,8 +17,10 @@
 
             <el-dropdown @command="handleCommand" trigger="click">
                 <div class="user-info">
-                    <el-avatar :size="32" class="user-avatar" :icon="User" />
-                    <span class="username">{{ userInfo?.username }}({{ userInfo?.workId }})</span>
+                    <el-avatar :size="32" class="user-avatar" :icon="userInfo?.username ? undefined : User">
+                        <span v-if="userInfo?.username">{{ userInitial }}</span>
+                    </el-avatar>
+                    <span class="username">{{ userInfo?.username || '' }} {{ userInfo?.workId || '' }}</span>
                     <el-icon class="arrow-icon">
                         <ChevronDown />
                     </el-icon>
@@ -51,6 +53,10 @@ const appStore = useAppStore()
 
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
+const userInitial = computed(() => {
+    const username = userInfo.value?.username
+    return username ? username.charAt(username.length - 1).toUpperCase() : ''
+})
 
 const isCollapsed = computed(() => appStore.sidebarCollapsed)
 const currentRoute = computed(() => route.meta.title || route.name)
