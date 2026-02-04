@@ -1,5 +1,4 @@
 import { ElMessage } from 'element-plus'
-
 import sso from '@/utils/sso'
 import { SERVER_URL, TOKEN_NAME } from '@/config/app.config'
 
@@ -8,7 +7,7 @@ const httpConfig = {
     baseURL: SERVER_URL || '/amtcapi',
     timeout: 60000 * 5, // 请求超时时间
     // 自定义request拦截器
-    rquestInterceptorFun: (config) => {
+    requestInterceptorFun: (config) => {
       config.headers[TOKEN_NAME] = sso.getToken()
       return config
     },
@@ -18,7 +17,7 @@ const httpConfig = {
       }
       return response
     }
-  },
+  }
 }
 
 export default httpConfig
