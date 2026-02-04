@@ -194,10 +194,6 @@ const handleDelete = (row) => {
 </script>
 
 <style lang="scss" scoped>
-.table-demo-container {
-    padding: 20px;
-}
-
 .demo-card {
     .card-header {
         display: flex;
