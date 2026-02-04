@@ -12,11 +12,6 @@ export const themes = {
     label: '蓝色主题',
     file: 'blue.css'
   },
-  purple: {
-    name: 'Purple',
-    label: '紫色主题',
-    file: 'purple.css'
-  },
   orange: {
     name: 'Orange',
     label: '橙色主题',

@@ -1,0 +1,10 @@
+[
+  {
+    "action": "remove",
+    "files": [
+      "openspec",
+      "degit.json",
+      ".gitignore"
+    ]
+  }
+]
