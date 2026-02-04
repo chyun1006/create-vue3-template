@@ -1,6 +1,6 @@
 <template>
     <div class="table-demo-container">
-        <el-card class="demo-card">
+        <c-card class="demo-card">
             <template #header>
                 <div class="card-header">
                     <span>表格组件示例</span>
@@ -91,7 +91,7 @@
                 <h3>6. 嵌套列</h3>
                 <c-table :columns="nestedColumns" :dataSource="arrayData" :pagination="true" />
             </section>
-        </el-card>
+        </c-card>
     </div>
 </template>
 
