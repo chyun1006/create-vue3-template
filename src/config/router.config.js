@@ -12,10 +12,10 @@
  * @property {string} meta.title - 页面标题
  * @property {string} meta.icon - 菜单图标 (Element Plus Icon 名称)
  * @property {boolean} meta.menu - 是否在菜单中显示
- * @property {boolean} meta.requiresAuth - 是否需要登录
+ * @property {boolean} meta.requiresAuth - 是否需要登录，true || 不写代表要校验， false代表不校验
  * @property {Array} children - 子路由
  */
-export const routerConfig = [
+export const asyncRoutes = [
   {
     path: '/',
     name: 'Home',
@@ -47,7 +47,8 @@ export const routerConfig = [
           title: '示例页面',
           icon: 'User',
           menu: true,
-          requiresAuth: true
+          requiresAuth: true,
+          // permission: ['123']
         }
       },
       {
@@ -81,7 +82,7 @@ export const routerConfig = [
  * @param {Array} routes - 路由配置数组
  * @returns {Array} 菜单配置数组
  */
-export function getMenuConfig(routes = routerConfig) {
+export function getMenuConfig(routes = asyncRoutes) {
   return routes
     .filter(route => route.meta?.menu === true)
     .map(route => {
@@ -107,7 +108,7 @@ export function getMenuConfig(routes = routerConfig) {
  * @param {Array} routes - 路由配置数组
  * @returns {Array} Vue Router 格式的路由配置
  */
-export function generateRoutes(routes = routerConfig) {
+export function generateRoutes(routes = asyncRoutes) {
   return routes.map(route => {
     const routeItem = {
       path: route.path,

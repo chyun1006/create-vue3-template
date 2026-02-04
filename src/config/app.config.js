@@ -1,5 +1,5 @@
 export const APP_CONFIG = {
-  systemCode: 'iaoc',
+  systemCode: 'air.budget',
   systemName: '',
   version: '1.0.0'
 }
