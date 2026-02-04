@@ -33,7 +33,7 @@ export const routerConfig = [
     name: 'demo',
     redirect: '/all',
     meta: {
-      title: '系统管理',
+      title: 'demo',
       icon: 'Setting',
       menu: true,
       requiresAuth: true

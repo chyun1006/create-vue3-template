@@ -34,7 +34,8 @@ const isCollapsed = computed(() => appStore.sidebarCollapsed)
         display: flex;
         flex-direction: column;
         width: calc(100% - 256px);
-        transition: width 0.3s;
+        transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: width;
         overflow: hidden;
         background-color: $bg-page;
 
@@ -46,6 +47,7 @@ const isCollapsed = computed(() => appStore.sidebarCollapsed)
             flex: 1;
             padding: 20px;
             overflow-y: auto;
+            overflow-x: hidden;
             @include scrollbar-style;
         }
     }

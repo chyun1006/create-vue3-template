@@ -8,7 +8,7 @@
         </div>
 
         <el-scrollbar class="sidebar-scrollbar">
-            <el-menu :default-active="activeMenu" :collapse="isCollapsed" :unique-opened="true"
+            <el-menu :default-active="activeMenu" :collapse="isCollapsed" :unique-opened="false"
                 :collapse-transition="false" class="el-menu-vertical" router>
                 <sidebar-item v-for="route in menuList" :key="route.path || route.title" :item="route" />
             </el-menu>
@@ -34,11 +34,17 @@ const activeMenu = computed(() => route.path)
 <style lang="scss" scoped>
 .sidebar-container {
     height: 100%;
+    width: 256px;
     background-color: var(--sidebar-bg);
-    transition: width 0.3s;
+    transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: width;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+
+    &.collapsed {
+        width: 64px;
+    }
 
     .logo-container {
         height: 60px;
@@ -50,11 +56,15 @@ const activeMenu = computed(() => route.path)
         overflow: hidden;
         white-space: nowrap;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
 
         .logo-title {
             color: var(--sidebar-text, white);
             font-weight: 600;
             font-size: 18px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
@@ -108,9 +118,12 @@ const activeMenu = computed(() => route.path)
     }
 }
 
-.fade-enter-active,
+.fade-enter-active {
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
 .fade-leave-active {
-    transition: opacity 0.3s;
+    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-enter-from,

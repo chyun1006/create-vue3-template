@@ -10,8 +10,8 @@
 
 <style lang="scss" scoped>
 .home-page {
-    min-height: 100vh;
+    padding: 20px;
     background: linear-gradient(to bottom, #f7fafc, #edf2f7);
-
+    border-radius: 8px;
 }
 </style>
