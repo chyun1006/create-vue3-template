@@ -15,7 +15,7 @@ export default [
       {
         path: '/all',
         name: 'all',
-        component: () => import('@/views/demo/index.vue'),
+        component: () => import('@/views/Demo/Index.vue'),
         meta: {
           title: '示例页面',
           icon: Users,
@@ -26,7 +26,7 @@ export default [
       {
         path: '/modal',
         name: 'modal',
-        component: () => import('@/views/demo/modal.vue'),
+        component: () => import('@/views/Demo/Modal.vue'),
         meta: {
           title: '弹窗示例',
           icon: MessageSquare,
@@ -36,7 +36,7 @@ export default [
       {
         path: '/table',
         name: 'table',
-        component: () => import('@/views/demo/table.vue'),
+        component: () => import('@/views/Demo/Table.vue'),
         meta: {
           title: '表格示例',
           icon: Table2,

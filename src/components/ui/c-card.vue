@@ -27,9 +27,9 @@ defineOptions({
 
 /* 覆盖 el-card 的默认样式 */
 :deep(.el-card__header) {
-    padding: 1.25rem;
     border-bottom: 1px solid rgb(243 244 246);
     background-color: transparent;
+    padding: 10px 20px;
 }
 
 :deep(.el-card__body) {

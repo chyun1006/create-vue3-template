@@ -1,6 +1,6 @@
 <template>
     <div class="table-demo-container">
-        <c-card class="demo-card">
+        <c-card class="demo-card" title="表格组件示例">
             <template #header>
                 <div class="card-header">
                     <span>表格组件示例</span>
@@ -199,7 +199,7 @@ const handleDelete = (row) => {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 600;
     }
 }
