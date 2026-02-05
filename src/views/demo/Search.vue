@@ -4,8 +4,6 @@
             <h2>C-Search 组件示例</h2>
             <p>基于配置的动态搜索栏，支持响应式布局和自动折叠。</p>
         </div>
-        <el-button type="success">成功按钮</el-button>
-        <el-button type="warning">警告按钮</el-button>
         <c-search :json-schema="searchSchema" v-model="searchModel" @search="handleSearch" @reset="handleReset">
             <!-- 演示插槽功能 -->
             <template #extra-btns>
