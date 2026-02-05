@@ -16,8 +16,7 @@
             <!-- Promise 数据源 -->
             <section class="demo-section">
                 <h3>2. Promise 数据源(远程分页)</h3>
-                <el-button @click="refreshRemoteData" type="primary" size="small" style="margin-bottom: 12px">
-                    刷新数据
+                <el-button @click="refreshRemoteData" type="primary" size="small" style="margin-bottom: 12px"> 刷新数据
                 </el-button>
                 <c-table ref="remoteTableRef" :columns="basicColumns" :dataSource="fetchData" :pagination="true"
                     indexable />
@@ -44,12 +43,8 @@
 
                     <!-- 自定义操作列 -->
                     <template #actions="{ row }">
-                        <el-button type="primary" size="small" link @click="handleEdit(row)">
-                            编辑
-                        </el-button>
-                        <el-button type="danger" size="small" link @click="handleDelete(row)">
-                            删除
-                        </el-button>
+                        <el-button type="primary" size="small" link @click="handleEdit(row)"> 编辑 </el-button>
+                        <el-button type="danger" size="small" link @click="handleDelete(row)"> 删除 </el-button>
                     </template>
                 </c-table>
             </section>
@@ -58,12 +53,8 @@
             <section class="demo-section">
                 <h3>4. 多选功能</h3>
                 <div style="margin-bottom: 12px">
-                    <el-button @click="getSelectedRows" type="primary" size="small">
-                        获取选中行
-                    </el-button>
-                    <span v-if="selectedRows.length" style="margin-left: 12px">
-                        已选中 {{ selectedRows.length }} 行
-                    </span>
+                    <el-button @click="getSelectedRows" type="primary" size="small"> 获取选中行 </el-button>
+                    <span v-if="selectedRows.length" style="margin-left: 12px"> 已选中 {{ selectedRows.length }} 行 </span>
                 </div>
                 <c-table ref="checkableTableRef" :columns="basicColumns" :dataSource="arrayData" :pagination="true"
                     checkable indexable />

@@ -11,7 +11,7 @@
             <slot :name="column.prop" :row="row" :column="col" :index="$index"> </slot>
         </template>
         <template #header>
-            <slot name="header">{{column.label}}</slot>
+            <slot name="header">{{ column.label }}</slot>
         </template>
     </el-table-column>
 </template>
@@ -21,7 +21,7 @@ defineProps({
     column: Object,
     showOverflowTooltip: {
         type: Boolean,
-        default: true,
-    },
-});
+        default: true
+    }
+})
 </script>

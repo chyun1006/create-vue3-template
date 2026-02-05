@@ -1,5 +1,5 @@
 // Element Plus 主题变量定制 - 引用 SCSS 变量(已映射到 CSS 变量)
-@use "./variables.scss" as *;
+@use './variables.scss' as *;
 
 // 不要在这里直接使用 var(),因为 EP 的 SCSS 混合宏可能需要真正的颜色值(编译时)
 // 如果 EP SCSS 编译失败,我们需要在 index.scss 中通过 CSS 变量覆盖机制来处理

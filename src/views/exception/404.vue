@@ -86,7 +86,6 @@ const goBack = () => {
 }
 
 @keyframes shake {
-
     0%,
     100% {
         transform: rotate(0deg);

@@ -1,8 +1,8 @@
 <template>
-  <div class="basic-content">
-    <p>这是一个基本的弹窗内容示例。</p>
-    <p>你可以点击确定或取消按钮关闭弹窗。</p>
-  </div>
+    <div class="basic-content">
+        <p>这是一个基本的弹窗内容示例。</p>
+        <p>你可以点击确定或取消按钮关闭弹窗。</p>
+    </div>
 </template>
 
 <script setup>
@@ -11,12 +11,12 @@
 
 <style lang="scss" scoped>
 .basic-content {
-  padding: 20px;
-  text-align: center;
+    padding: 20px;
+    text-align: center;
 
-  p {
-    margin: 10px 0;
-    color: #606266;
-  }
+    p {
+        margin: 10px 0;
+        color: #606266;
+    }
 }
 </style>

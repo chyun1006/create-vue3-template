@@ -4,16 +4,16 @@
  * @return { Promise }
  */
 export function to(promise, errorExt) {
-  return promise
-    .then((data) => [null, data])
-    .catch((err) => {
-      if (errorExt) {
-        const parsedError = Object.assign({}, err, errorExt)
-        return [parsedError, undefined]
-      }
+    return promise
+        .then((data) => [null, data])
+        .catch((err) => {
+            if (errorExt) {
+                const parsedError = Object.assign({}, err, errorExt)
+                return [parsedError, undefined]
+            }
 
-      return [err, undefined]
-    })
+            return [err, undefined]
+        })
 }
 
 export default to

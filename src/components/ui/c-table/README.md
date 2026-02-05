@@ -19,25 +19,20 @@
 
 ```vue
 <template>
-  <c-table
-    :columns="columns"
-    :dataSource="users"
-    :pagination="true"
-    indexable
-  />
+    <c-table :columns="columns" :dataSource="users" :pagination="true" indexable />
 </template>
 
 <script setup>
 const columns = [
-  { prop: 'id', label: 'ID', width: '80' },
-  { prop: 'name', label: '姓名', width: '120' },
-  { prop: 'age', label: '年龄', width: '80' },
-  { prop: 'email', label: '邮箱' }
+    { prop: 'id', label: 'ID', width: '80' },
+    { prop: 'name', label: '姓名', width: '120' },
+    { prop: 'age', label: '年龄', width: '80' },
+    { prop: 'email', label: '邮箱' }
 ]
 
 const users = [
-  { id: 1, name: '张三', age: 25, email: 'zhangsan@example.com' },
-  { id: 2, name: '李四', age: 30, email: 'lisi@example.com' }
+    { id: 1, name: '张三', age: 25, email: 'zhangsan@example.com' },
+    { id: 2, name: '李四', age: 30, email: 'lisi@example.com' }
 ]
 </script>
 ```
@@ -46,12 +41,7 @@ const users = [
 
 ```vue
 <template>
-  <c-table
-    ref="tableRef"
-    :columns="columns"
-    :dataSource="fetchUsers"
-    :pagination="true"
-  />
+    <c-table ref="tableRef" :columns="columns" :dataSource="fetchUsers" :pagination="true" />
 </template>
 
 <script setup>
@@ -60,15 +50,15 @@ import { ref } from 'vue'
 const tableRef = ref()
 
 const fetchUsers = (params) => {
-  return api.getUsers({
-    page: params.current,
-    pageSize: params.pageSize
-  })
+    return api.getUsers({
+        page: params.current,
+        pageSize: params.pageSize
+    })
 }
 
 // 手动刷新
 const refresh = () => {
-  tableRef.value?.query()
+    tableRef.value?.query()
 }
 </script>
 ```
@@ -77,22 +67,22 @@ const refresh = () => {
 
 ### Props
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| columns | Array | - | 列配置数组 |
-| dataSource | Array \| Function | - | 数据源 |
-| pagination | Boolean \| Object | true | 是否显示分页 |
-| checkable | Boolean | false | 是否显示多选框 |
-| indexable | Boolean | false | 是否显示序号列 |
-| indexFixed | String | - | 序号列固定位置('left' \| 'right') |
-| expend | Boolean | false | 是否支持展开行 |
-| autoQuery | Boolean | true | 是否自动查询(仅 Promise 数据源) |
-| isNewTable | Boolean | false | 使用新数据格式 |
-| useLocalPagination | Boolean | false | 强制使用本地分页 |
-| formatFunc | Function | - | 自定义数据格式化函数 |
-| defaultParams | Object | {} | 默认查询参数 |
-| showOnePage | Boolean | true | 单页数据时是否显示分页 |
-| layout | String | 'total, prev, pager, next, sizes, jumper' | 分页布局 |
+| 参数               | 类型              | 默认值                                    | 说明                              |
+| ------------------ | ----------------- | ----------------------------------------- | --------------------------------- |
+| columns            | Array             | -                                         | 列配置数组                        |
+| dataSource         | Array \| Function | -                                         | 数据源                            |
+| pagination         | Boolean \| Object | true                                      | 是否显示分页                      |
+| checkable          | Boolean           | false                                     | 是否显示多选框                    |
+| indexable          | Boolean           | false                                     | 是否显示序号列                    |
+| indexFixed         | String            | -                                         | 序号列固定位置('left' \| 'right') |
+| expend             | Boolean           | false                                     | 是否支持展开行                    |
+| autoQuery          | Boolean           | true                                      | 是否自动查询(仅 Promise 数据源)   |
+| isNewTable         | Boolean           | false                                     | 使用新数据格式                    |
+| useLocalPagination | Boolean           | false                                     | 强制使用本地分页                  |
+| formatFunc         | Function          | -                                         | 自定义数据格式化函数              |
+| defaultParams      | Object            | {}                                        | 默认查询参数                      |
+| showOnePage        | Boolean           | true                                      | 单页数据时是否显示分页            |
+| layout             | String            | 'total, prev, pager, next, sizes, jumper' | 分页布局                          |
 
 ### 列配置 (Column)
 
@@ -111,31 +101,31 @@ const refresh = () => {
 
 ### Events
 
-| 事件名 | 参数 | 说明 |
-|--------|------|------|
-| sizeChange | pageSize | 每页条数变化 |
-| currentChange | current | 页码变化 |
-| selection-change | selection | 多选变化 |
+| 事件名           | 参数      | 说明         |
+| ---------------- | --------- | ------------ |
+| sizeChange       | pageSize  | 每页条数变化 |
+| currentChange    | current   | 页码变化     |
+| selection-change | selection | 多选变化     |
 
 ### Methods
 
-| 方法名 | 参数 | 返回值 | 说明 |
-|--------|------|--------|------|
-| query | params?: Object | - | 查询数据 |
-| getSelection | - | Array | 获取选中行 |
-| changeCurrentPage | page: Number | - | 切换页码 |
-| getState | - | Object | 获取当前状态 |
-| clearSort | - | - | 清除排序 |
-| changeLoading | flag: Boolean | - | 控制 loading 状态 |
+| 方法名            | 参数            | 返回值 | 说明              |
+| ----------------- | --------------- | ------ | ----------------- |
+| query             | params?: Object | -      | 查询数据          |
+| getSelection      | -               | Array  | 获取选中行        |
+| changeCurrentPage | page: Number    | -      | 切换页码          |
+| getState          | -               | Object | 获取当前状态      |
+| clearSort         | -               | -      | 清除排序          |
+| changeLoading     | flag: Boolean   | -      | 控制 loading 状态 |
 
 ### Slots
 
-| 插槽名 | 参数 | 说明 |
-|--------|------|------|
-| `${prop}` | { row, column, index } | 自定义列内容 |
-| `${prop}Header` | - | 自定义列表头 |
-| expand | { props } | 展开行内容 |
-| empty | - | 空数据状态 |
+| 插槽名          | 参数                   | 说明         |
+| --------------- | ---------------------- | ------------ |
+| `${prop}`       | { row, column, index } | 自定义列内容 |
+| `${prop}Header` | -                      | 自定义列表头 |
+| expand          | { props }              | 展开行内容   |
+| empty           | -                      | 空数据状态   |
 
 ## 高级用法
 
@@ -143,26 +133,26 @@ const refresh = () => {
 
 ```vue
 <template>
-  <c-table :columns="columns" :dataSource="users">
-    <!-- 自定义表头 -->
-    <template #statusHeader>
-      <el-icon><InfoFilled /></el-icon>
-      <span>状态信息</span>
-    </template>
+    <c-table :columns="columns" :dataSource="users">
+        <!-- 自定义表头 -->
+        <template #statusHeader>
+            <el-icon><InfoFilled /></el-icon>
+            <span>状态信息</span>
+        </template>
 
-    <!-- 自定义列内容 -->
-    <template #status="{ row }">
-      <el-tag :type="row.status === 'active' ? 'success' : 'info'">
-        {{ row.status === 'active' ? '激活' : '禁用' }}
-      </el-tag>
-    </template>
+        <!-- 自定义列内容 -->
+        <template #status="{ row }">
+            <el-tag :type="row.status === 'active' ? 'success' : 'info'">
+                {{ row.status === 'active' ? '激活' : '禁用' }}
+            </el-tag>
+        </template>
 
-    <!-- 自定义操作列 -->
-    <template #actions="{ row }">
-      <el-button type="primary" link @click="handleEdit(row)">编辑</el-button>
-      <el-button type="danger" link @click="handleDelete(row)">删除</el-button>
-    </template>
-  </c-table>
+        <!-- 自定义操作列 -->
+        <template #actions="{ row }">
+            <el-button type="primary" link @click="handleEdit(row)">编辑</el-button>
+            <el-button type="danger" link @click="handleDelete(row)">删除</el-button>
+        </template>
+    </c-table>
 </template>
 ```
 
@@ -170,13 +160,8 @@ const refresh = () => {
 
 ```vue
 <template>
-  <c-table
-    ref="tableRef"
-    :columns="columns"
-    :dataSource="users"
-    checkable
-  />
-  <el-button @click="getSelected">获取选中行</el-button>
+    <c-table ref="tableRef" :columns="columns" :dataSource="users" checkable />
+    <el-button @click="getSelected">获取选中行</el-button>
 </template>
 
 <script setup>
@@ -185,8 +170,8 @@ import { ref } from 'vue'
 const tableRef = ref()
 
 const getSelected = () => {
-  const rows = tableRef.value?.getSelection() || []
-  console.log('选中的行:', rows)
+    const rows = tableRef.value?.getSelection() || []
+    console.log('选中的行:', rows)
 }
 </script>
 ```
@@ -195,13 +180,13 @@ const getSelected = () => {
 
 ```vue
 <template>
-  <c-table :columns="columns" :dataSource="users" expend>
-    <template #expand="{ props }">
-      <div style="padding: 12px">
-        <p>详细信息: {{ props.row }}</p>
-      </div>
-    </template>
-  </c-table>
+    <c-table :columns="columns" :dataSource="users" expend>
+        <template #expand="{ props }">
+            <div style="padding: 12px">
+                <p>详细信息: {{ props.row }}</p>
+            </div>
+        </template>
+    </c-table>
 </template>
 ```
 
@@ -210,21 +195,21 @@ const getSelected = () => {
 ```vue
 <script setup>
 const columns = [
-  { prop: 'id', label: 'ID', width: '80' },
-  {
-    label: '用户信息',
-    children: [
-      { prop: 'name', label: '姓名', width: '120' },
-      { prop: 'age', label: '年龄', width: '80' }
-    ]
-  },
-  {
-    label: '联系方式',
-    children: [
-      { prop: 'email', label: '邮箱' },
-      { prop: 'phone', label: '电话' }
-    ]
-  }
+    { prop: 'id', label: 'ID', width: '80' },
+    {
+        label: '用户信息',
+        children: [
+            { prop: 'name', label: '姓名', width: '120' },
+            { prop: 'age', label: '年龄', width: '80' }
+        ]
+    },
+    {
+        label: '联系方式',
+        children: [
+            { prop: 'email', label: '邮箱' },
+            { prop: 'phone', label: '电话' }
+        ]
+    }
 ]
 </script>
 ```
@@ -233,18 +218,14 @@ const columns = [
 
 ```vue
 <template>
-  <c-table
-    :columns="columns"
-    :dataSource="fetchUsers"
-    :formatFunc="formatResponse"
-  />
+    <c-table :columns="columns" :dataSource="fetchUsers" :formatFunc="formatResponse" />
 </template>
 
 <script setup>
 const formatResponse = (response) => ({
-  list: response.items,      // 数据列表
-  total: response.count,     // 总条数
-  current: response.page     // 当前页码
+    list: response.items, // 数据列表
+    total: response.count, // 总条数
+    current: response.page // 当前页码
 })
 </script>
 ```

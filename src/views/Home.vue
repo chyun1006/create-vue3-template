@@ -18,8 +18,7 @@
                 </div>
             </div>
             <div class="welcome-bg">
-                <img src="https://img.alicdn.com/imgextra/i3/O1CN01T36nSj1LPL6x9G3jX_!!6000000001287-2-tps-1398-1046.png"
-                    alt="welcome" />
+                <img src="https://img.alicdn.com/imgextra/i3/O1CN01T36nSj1LPL6x9G3jX_!!6000000001287-2-tps-1398-1046.png" alt="welcome" />
             </div>
         </div>
 

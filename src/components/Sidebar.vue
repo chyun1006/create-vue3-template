@@ -8,8 +8,7 @@
         </div>
 
         <el-scrollbar class="sidebar-scrollbar">
-            <el-menu :default-active="activeMenu" :collapse="isCollapsed" :unique-opened="false"
-                :collapse-transition="false" class="el-menu-vertical" router>
+            <el-menu :default-active="activeMenu" :collapse="isCollapsed" :unique-opened="false" :collapse-transition="false" class="el-menu-vertical" router>
                 <sidebar-item v-for="route in menuList" :key="route.path || route.title" :item="route" />
             </el-menu>
         </el-scrollbar>

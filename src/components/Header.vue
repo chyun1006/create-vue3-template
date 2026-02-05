@@ -68,7 +68,7 @@ const toggleSidebar = () => {
 const handleCommand = (command) => {
     switch (command) {
         case 'logout':
-            sso.logout();
+            sso.logout()
             ElMessage.success('退出登录成功')
             router.push('/')
             break

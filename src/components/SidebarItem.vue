@@ -12,8 +12,7 @@
     </template>
 
     <!-- 没有子菜单 -->
-    <el-menu-item v-else-if="!item.children || item.children.length === 0" :index="item.path"
-        @click="handleClick(item)">
+    <el-menu-item v-else-if="!item.children || item.children.length === 0" :index="item.path" @click="handleClick(item)">
         <el-icon v-if="item.icon">
             <component :is="item.icon" />
         </el-icon>

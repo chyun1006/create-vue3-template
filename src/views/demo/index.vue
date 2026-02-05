@@ -62,7 +62,6 @@ import { ref } from 'vue'
 const inputValue = ref('')
 const switchValue = ref(true)
 const sliderValue = ref(50)
-
 </script>
 
 <style lang="scss" scoped>

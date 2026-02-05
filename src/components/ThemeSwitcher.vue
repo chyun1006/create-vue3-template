@@ -9,8 +9,7 @@
             </el-button>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item v-for="(theme, key) in themes" :key="key" :command="key"
-                        :class="{ 'is-active': currentTheme === key }">
+                    <el-dropdown-item v-for="(theme, key) in themes" :key="key" :command="key" :class="{ 'is-active': currentTheme === key }">
                         {{ theme.label }}
                     </el-dropdown-item>
                 </el-dropdown-menu>

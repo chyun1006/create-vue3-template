@@ -1,6 +1,6 @@
 <template>
     <el-table header-cell-class-name="table-header-cell-class-name" ref="tableRef" :data="tableData" v-loading="loading" v-bind="$attrs" @selection-change="handleSelectionChange">
-        <el-table-column v-if="checkable && !latest" type="selection" width="55" :selectable="row => !row.disabled" />
+        <el-table-column v-if="checkable && !latest" type="selection" width="55" :selectable="(row) => !row.disabled" />
 
         <el-table-column type="expand" v-if="expend">
             <template #default="props">
@@ -9,7 +9,7 @@
         </el-table-column>
 
         <el-table-column align="center" :fixed="indexFixed" v-if="indexable" key="index" prop="index" width="60" label="序号">
-            <template #default="{  $index }">{{ (current - 1) * pageSize + $index + 1 }}</template>
+            <template #default="{ $index }">{{ (current - 1) * pageSize + $index + 1 }}</template>
         </el-table-column>
 
         <table-column v-bind="{ ...col }" v-for="col in columns" :column="col" :key="col.prop">
@@ -21,7 +21,7 @@
             </template>
         </table-column>
 
-        <el-table-column v-if="checkable && latest" type="selection" width="55" :selectable="row => !row.disabled" />
+        <el-table-column v-if="checkable && latest" type="selection" width="55" :selectable="(row) => !row.disabled" />
         <template #empty>
             <slot name="empty"></slot>
         </template>
@@ -42,10 +42,10 @@
 </template>
 
 <script setup>
-import { ref, reactive, provide, watch, toRaw, nextTick, isRef } from "vue";
-import TableColumn from "./table-column.vue";
-import { useTable } from "./useTable";
-import { computed } from "vue";
+import { ref, reactive, provide, watch, toRaw, nextTick, isRef } from 'vue'
+import TableColumn from './table-column.vue'
+import { useTable } from './useTable'
+import { computed } from 'vue'
 
 const props = defineProps({
     columns: Array,
@@ -67,116 +67,128 @@ const props = defineProps({
     onRequestFinished: Function,
     layout: {
         type: String,
-        default: "total, prev, pager, next, sizes, jumper",
+        default: 'total, prev, pager, next, sizes, jumper'
     },
     // 是否自动查询, 关闭是为了处理筛选条件异步的问题
     autoQuery: {
         type: Boolean,
-        default: true,
+        default: true
     },
     // 运行改造后标准数据结构
     isNewTable: {
         type: Boolean,
-        default: false,
+        default: false
     },
     useLocalPagination: {
         type: Boolean,
-        default: false,
+        default: false
     },
     showOnePage: {
         type: Boolean,
-        default: true,
-    },
-});
+        default: true
+    }
+})
 
-const emits = defineEmits(["sizeChange", "currentChange", "tabChange"]);
-const tableRef = ref();
-let { loading, tableData, setLocalDatasource, current, total, pageSize, query, handleSizeChange, handleCurrentChange, handleSelectionChange, getSelection, changeCurrentPage, getState } = useTable(
-    props
-);
+const emits = defineEmits(['sizeChange', 'currentChange', 'tabChange'])
+const tableRef = ref()
+let {
+    loading,
+    tableData,
+    setLocalDatasource,
+    current,
+    total,
+    pageSize,
+    query,
+    handleSizeChange,
+    handleCurrentChange,
+    handleSelectionChange,
+    getSelection,
+    changeCurrentPage,
+    getState
+} = useTable(props)
 
 const showPagination = computed(() => {
     if (props.pagination && tableData.value?.length) {
         if (!props.showOnePage && total.value <= pageSize.value) {
-            return false;
+            return false
         }
-        return true;
+        return true
     }
-    return false;
-});
+    return false
+})
 
 watch(
     () => props.dataSource,
-    newV => {
+    (newV) => {
         // 当前数据源为数组时
         if (Array.isArray(newV)) {
-            setLocalDatasource(newV);
+            setLocalDatasource(newV)
         }
     },
     {
-        immediate: true,
+        immediate: true
     }
-);
+)
 
 watch(
     tableData,
-    newV => {
+    (newV) => {
         // 设置默认选中行
         if (props.checkable) {
-            const rows = (newV || []).filter(r => r.disabled);
+            const rows = (newV || []).filter((r) => r.disabled)
             // setRowSelecttion(rows);
         }
         // 数据更新后，将展开的行合上
         if (props.expend) {
-            setRowExpand(newV);
+            setRowExpand(newV)
         }
     },
     {
-        immediate: true,
+        immediate: true
     }
-);
+)
 
 watch(
     () => props.spining,
-    newV => {
-        loading.value = newV;
+    (newV) => {
+        loading.value = newV
     }
-);
+)
 
 function setRowSelecttion(rows) {
     nextTick(() => {
-        (rows || []).map(r => {
-            tableRef.value.toggleRowSelection(r, true);
-        });
-    });
+        ;(rows || []).map((r) => {
+            tableRef.value.toggleRowSelection(r, true)
+        })
+    })
 }
 
 function setRowExpand(rows) {
     nextTick(() => {
-        (rows || []).map(r => {
-            tableRef.value.toggleRowExpansion(r, false);
-        });
-    });
+        ;(rows || []).map((r) => {
+            tableRef.value.toggleRowExpansion(r, false)
+        })
+    })
 }
 
-const _handleSizeChange = e => {
-    handleSizeChange(e);
-    emits("sizeChange", e);
-};
+const _handleSizeChange = (e) => {
+    handleSizeChange(e)
+    emits('sizeChange', e)
+}
 
-const _handleCurrentChange = e => {
-    handleCurrentChange(e);
-    emits("currentChange", e);
-};
-const changeLoading = v => {
-    loading.value = v;
-};
+const _handleCurrentChange = (e) => {
+    handleCurrentChange(e)
+    emits('currentChange', e)
+}
+const changeLoading = (v) => {
+    loading.value = v
+}
 const clearSort = () => {
-    tableRef.value.clearSort();
-};
+    tableRef.value.clearSort()
+}
 const getSelectionRows = () => {
-    return tableRef.value?.getSelectionRows();
-};
+    return tableRef.value?.getSelectionRows()
+}
 
 defineExpose({
     query,
@@ -188,8 +200,8 @@ defineExpose({
     changeCurrentPage,
     getState,
     clearSort,
-    getSelectionRows,
-});
+    getSelectionRows
+})
 </script>
 <style lang="scss" scoped>
 .table-pagination {
