@@ -6,11 +6,13 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import sso from './utils/sso'
+import ElementPlus from 'element-plus'
 import uiComponents from './components/ui'
 import './permission'
 
 const app = createApp(App)
 
+app.use(ElementPlus)
 app.use(createPinia())
 app.use(router)
 app.use(uiComponents)

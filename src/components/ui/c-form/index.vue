@@ -1,79 +1,53 @@
 <template>
     <c-validate ref="validateRef" v-model="model" :json-schema="jsonSchema" v-bind="$attrs">
-        <template #default="{ rules }">
-            <el-row :gutter="20">
-                <template v-for="(config, key) in jsonSchema" :key="key">
-                    <el-col v-if="checkVisible(config)" :span="config.attrs?.span || 24">
-                        <el-form-item :label="config.label" :prop="key" :rules="rules[key]">
-                            <component :is="getComName(config.type)" v-model="model[key]" v-bind="getPureAttrs(config)"
-                                class="w-full">
-                                <!-- <template v-if="config.type.includes('select') && config.options">
-                                    <el-option v-for="opt in config.options" :key="opt.value" :label="opt.label"
-                                        :value="opt.value" />
-                                </template>
-<template v-else-if="hasOptions(config.type) && config.options">
-                                    <component :is="config.type.includes('radio') ? 'el-radio' : 'el-checkbox'"
-                                        v-for="opt in config.options" :key="opt.value" :label="opt.value">
-                                        {{ opt.label }}
-                                    </component>
-                                </template> -->
+        <el-row :gutter="20">
+            <template v-for="(config, key) in jsonSchema" :key="key">
+                <c-rule :prop="key">
+                    <template v-if="slots[key]">
+                        <slot :name="key" :model="model" :config="config"></slot>
+                    </template>
+                    <component v-else :is="getComName(config.type)" v-model="model[key]"
+                        v-bind="getMergedAttrs(config)">
+                        <template v-if="config.options">
+                            <component :is="getOptionComp(config.type)" v-for="opt in config.options" :key="opt.value"
+                                :label="config.type.includes('select') ? opt.label : opt.value" :value="opt.value">
+                                <template v-if="!config.type.includes('select')">{{ opt.label }}</template>
                             </component>
-                        </el-form-item>
-                    </el-col>
-                </template>
-            </el-row>
-        </template>
+                        </template>
+                    </component>
+                </c-rule>
+            </template>
+        </el-row>
     </c-validate>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import CValidate from './c-validate.vue';
+import { useSlots, ref } from 'vue';
+import CValidate from '../c-validate/index.vue';
+import CRule from '../c-rule/index.vue';
 
-defineProps({
-    jsonSchema: { type: Object, required: true }
-});
-
+defineProps({ jsonSchema: { type: Object, required: true } });
 const model = defineModel({ type: Object, required: true });
+
+const slots = useSlots();
 const validateRef = ref(null);
 
-/**
- * 核心：组件名称转换函数
- */
-const getComName = (type) => {
-    if (!type) return 'el-input';
-    // 别名处理：如果你喜欢直接写 textarea，我们把它映射给 el-input
-    if (type === 'textarea') return 'el-input';
-    // 标准拼接
-    return `el-${type}`;
+const getComName = (type) => (type === 'textarea' ? 'el-input' : `el-${type}`);
+const getOptionComp = (type) => type.includes('select') ? 'el-option' : (type.includes('radio') ? 'el-radio' : 'el-checkbox');
+
+const getMergedAttrs = (config) => {
+    const { ...jsonAttrs } = config.attrs || {};
+    const defaults = {
+        select: { filterable: true, clearable: true },
+        input: { clearable: true },
+        textarea: { type: 'textarea', autosize: { minRows: 2 } }
+    };
+    return { ...(defaults[config.type] || {}), ...jsonAttrs };
 };
 
-/**
- * 属性预处理：提取 span 并根据 type 自动补全属性
- */
-const getPureAttrs = (config) => {
-    const { span, ...rest } = config.attrs || {};
-    // 自动处理 textarea 的原生 type 属性
-    if (config.type === 'textarea') {
-        return { type: 'textarea', ...rest };
-    }
-    return rest;
-};
-
-// 辅助判断是否需要渲染 Radio/Checkbox 子项
-const hasOptions = (type) => type.includes('radio') || type.includes('checkbox');
-
-// 联动判断
-const checkVisible = (config) => {
-    if (config.visible === undefined) return true;
-    return typeof config.visible === 'function' ? config.visible(model.value) : !!config.visible;
-};
-
-defineExpose({ validate: () => validateRef.value?.validate() });
+defineExpose({
+    validate: () => validateRef.value?.validate(),
+    resetFields: () => validateRef.value?.resetFields()
+});
 </script>
-
-<style scoped>
-.w-full {
-    width: 100% !important;
-}
-</style>
+<style scoped></style>

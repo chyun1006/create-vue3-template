@@ -19,6 +19,7 @@ description: 规范当前 Vue3 项目的开发标准，包括核心组件使用�
 开发者应详细阅读以下专项规范：
 
 - [表格组件使用指南](resources/docs/c-table.md)
+- [表单组件使用指南](resources/docs/c-form.md)
 - [弹窗 Composable 使用指南](resources/docs/useModal.md)
 - [API 与网络请求规范](resources/docs/api-request.md)
 - [UI 系统配置](resources/docs/ui-std.md)
