@@ -23,14 +23,13 @@
                 </template>
 
                 <el-col v-bind="getResponsiveSpan({ attrs: { isBtn: true } })" class="search-btns">
-                    <el-button type="primary" icon="Search" @click="handleSearch">搜索</el-button>
-                    <el-button icon="Refresh" @click="handleReset">重置</el-button>
+                    <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
+                    <el-button :icon="RotateCcw" @click="handleReset">重置</el-button>
 
                     <el-link v-if="Object.keys(jsonSchema).length > visibleThreshold" type="primary" :underline="false"
                         @click="isExpanded = !isExpanded" class="expand-link">
-                        {{ isExpanded ? '收起' : '展开' }}
-                        <el-icon class="el-icon--right">
-                            <component :is="isExpanded ? 'ArrowUp' : 'ArrowDown'" />
+                        <el-icon>
+                            <component :is="isExpanded ? ChevronUp : ChevronDown" />
                         </el-icon>
                     </el-link>
                     <slot name="extra-btns"></slot>
@@ -42,6 +41,7 @@
 
 <script setup>
 import { useSlots, ref, computed, onMounted, onUnmounted } from 'vue';
+import { Search, RotateCcw, ChevronUp, ChevronDown } from 'lucide-vue-next';
 import CValidate from '../c-validate/index.vue';
 import CRule from '../c-rule/index.vue';
 

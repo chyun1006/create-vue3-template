@@ -43,13 +43,14 @@ const searchModel = ref({});
 // 2. 定义搜索配置
 const searchSchema = reactive({
     name: {
+        label: "姓名",
         type: 'input',
         attrs: {
             placeholder: '请输入姓名',
-            label: '姓名'
         }
     },
     status: {
+        label: "姓名",
         type: 'select',
         attrs: {
             placeholder: '请选择状态',
@@ -60,6 +61,7 @@ const searchSchema = reactive({
         }
     },
     role: {
+        label: "姓名",
         type: 'select',
         attrs: {
             placeholder: '选择角色',
@@ -71,6 +73,7 @@ const searchSchema = reactive({
         }
     },
     date: {
+        label: "姓名",
         type: 'date-picker',
         attrs: {
             type: 'daterange',
@@ -81,6 +84,7 @@ const searchSchema = reactive({
         }
     },
     amount: {
+        label: "姓名",
         type: 'input-number',
         attrs: {
             placeholder: '金额>=',
@@ -89,6 +93,7 @@ const searchSchema = reactive({
         }
     },
     description: {
+        label: "姓名",
         type: 'input',
         attrs: {
             placeholder: '描述关键词'
@@ -96,6 +101,7 @@ const searchSchema = reactive({
     },
     // 添加更多字段以测试折叠功能
     category: {
+        label: "姓名",
         type: 'select',
         attrs: {
             placeholder: '分类',
@@ -106,6 +112,7 @@ const searchSchema = reactive({
         }
     },
     tags: {
+        label: "姓名",
         type: 'select',
         attrs: {
             placeholder: '标签',
