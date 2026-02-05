@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, MessageSquare, Table2, Form } from 'lucide-vue-next'
+import { LayoutDashboard, Users, MessageSquare, Table2, Form, Search } from 'lucide-vue-next'
 
 export default [
     {
@@ -12,6 +12,16 @@ export default [
         },
         redirect: '/all',
         children: [
+            {
+                path: '/search',
+                name: 'search',
+                component: () => import('@/views/Demo/Search.vue'),
+                meta: {
+                    title: '搜索示例',
+                    icon: Search,
+                    requiresAuth: true
+                }
+            },
             {
                 path: '/all',
                 name: 'all',

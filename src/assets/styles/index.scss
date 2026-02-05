@@ -31,8 +31,28 @@ html:root {
     --el-color-primary-dark-2: color-mix(in oklch, var(--primary), black 20%);
 
     --el-color-success: var(--success);
+    --el-color-success-light-3: color-mix(in oklch, var(--success), white 30%);
+    --el-color-success-light-5: color-mix(in oklch, var(--success), white 50%);
+    --el-color-success-light-7: color-mix(in oklch, var(--success), white 70%);
+    --el-color-success-light-8: color-mix(in oklch, var(--success), white 80%);
+    --el-color-success-light-9: color-mix(in oklch, var(--success), white 90%);
+    --el-color-success-dark-2: color-mix(in oklch, var(--success), black 20%);
+
     --el-color-warning: var(--warning);
+    --el-color-warning-light-3: color-mix(in oklch, var(--warning), white 30%);
+    --el-color-warning-light-5: color-mix(in oklch, var(--warning), white 50%);
+    --el-color-warning-light-7: color-mix(in oklch, var(--warning), white 70%);
+    --el-color-warning-light-8: color-mix(in oklch, var(--warning), white 80%);
+    --el-color-warning-light-9: color-mix(in oklch, var(--warning), white 90%);
+    --el-color-warning-dark-2: color-mix(in oklch, var(--warning), black 20%);
+
     --el-color-danger: var(--destructive);
+    --el-color-danger-light-3: color-mix(in oklch, var(--destructive), white 30%);
+    --el-color-danger-light-5: color-mix(in oklch, var(--destructive), white 50%);
+    --el-color-danger-light-7: color-mix(in oklch, var(--destructive), white 70%);
+    --el-color-danger-light-8: color-mix(in oklch, var(--destructive), white 80%);
+    --el-color-danger-light-9: color-mix(in oklch, var(--destructive), white 90%);
+    --el-color-danger-dark-2: color-mix(in oklch, var(--destructive), black 20%);
 
     --el-bg-color: var(--background);
     --el-text-color-primary: var(--foreground);
