@@ -8,7 +8,8 @@
         </div>
 
         <el-scrollbar class="sidebar-scrollbar">
-            <el-menu :default-active="activeMenu" :collapse="isCollapsed" :unique-opened="false" :collapse-transition="false" class="el-menu-vertical" router>
+            <el-menu :default-active="activeMenu" :collapse="isCollapsed" :unique-opened="false"
+                :collapse-transition="false" class="el-menu-vertical" router>
                 <sidebar-item v-for="route in menuList" :key="route.path || route.title" :item="route" />
             </el-menu>
         </el-scrollbar>
@@ -108,7 +109,7 @@ const activeMenu = computed(() => route.path)
 
             &.is-active {
                 color: #ffffff !important;
-                background-color: color-mix(in oklch, var(--el-color-primary), transparent 80%) !important;
+                background-color: color-mix(in oklch, var(--el-color-primary), transparent 70%) !important;
                 border-right: 3px solid var(--el-color-primary);
 
                 :deep(span) {
