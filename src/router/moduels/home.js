@@ -19,7 +19,8 @@ export default [
                 meta: {
                     title: '首页',
                     icon: Home,
-                    requiresAuth: false
+                    requiresAuth: false,
+                    keepAlive: true
                 }
             }
         ]
