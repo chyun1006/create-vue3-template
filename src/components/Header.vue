@@ -6,8 +6,10 @@
             </el-icon>
 
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item v-if="currentRoute">{{ currentRoute }}</el-breadcrumb-item>
+                <el-breadcrumb-item v-for="(item, index) in breadcrumbs" :key="item.path" :to="{ path: item.path }">
+                    <span v-if="index === breadcrumbs.length - 1">{{ item.meta.title }}</span>
+                    <a v-else>{{ item.meta.title }}</a>
+                </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
 
@@ -59,7 +61,23 @@ const userInitial = computed(() => {
 })
 
 const isCollapsed = computed(() => appStore.sidebarCollapsed)
-const currentRoute = computed(() => route.meta.title || route.name)
+
+const breadcrumbs = computed(() => {
+    const matched = route.matched.filter((item) => item.meta && item.meta.title)
+    
+    // 去重逻辑：如果标题相同，只保留第一个
+    const result = []
+    const seen = new Set()
+    
+    matched.forEach(item => {
+        if (!seen.has(item.meta.title)) {
+            seen.add(item.meta.title)
+            result.push(item)
+        }
+    })
+    
+    return result
+})
 
 const toggleSidebar = () => {
     appStore.toggleSidebar()
