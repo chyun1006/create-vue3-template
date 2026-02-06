@@ -1,5 +1,5 @@
 <template>
-    <el-table header-cell-class-name="table-header-cell-class-name" ref="tableRef" :data="tableData" v-loading="loading" v-bind="$attrs" @selection-change="handleSelectionChange">
+    <el-table header-cell-class-name="table-header-cell-class-name" ref="tableRef" :data="tableData" v-loading="loading" v-bind="$attrs" @selection-change="handleSelectionChange" :header-cell-style="{ background: '#f9fafb' }">
         <el-table-column v-if="checkable && !latest" type="selection" width="55" :selectable="(row) => !row.disabled" />
 
         <el-table-column type="expand" v-if="expend">

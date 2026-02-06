@@ -65,6 +65,12 @@ html:root {
     --sidebar-active-bg: var(--sidebar-accent);
 }
 
+// 强制覆盖弹窗背景色变量
+.el-dialog {
+    --el-bg-color: #ffffff;
+}
+
+
 * {
     margin: 0;
     padding: 0;

@@ -28,12 +28,13 @@ const searchModel = ref({});
 const searchSchema = reactive({
   name: {
     type: 'input',
-    attrs: { label: '姓名', placeholder: '请输入姓名' }
+    label: '姓名',
+    attrs: { placeholder: '请输入姓名' }
   },
   status: {
     type: 'select',
+    label: '状态',
     attrs: { 
-      label: '状态', 
       options: [
         { label: '启用', value: 1 },
         { label: '禁用', value: 0 }
