@@ -22,17 +22,16 @@
                     </c-rule>
                 </template>
 
-                <el-col v-bind="getResponsiveSpan({ attrs: { isBtn: true } })" class="search-btns">
+                <el-col class="search-btns">
                     <el-button type="primary" :icon="Search" @click="handleSearch">搜索</el-button>
                     <el-button :icon="RotateCcw" @click="handleReset">重置</el-button>
-
+                    <slot name="extra-btns"></slot>
                     <el-link v-if="Object.keys(jsonSchema).length > visibleThreshold" type="primary" :underline="false"
                         @click="isExpanded = !isExpanded" class="expand-link">
                         <el-icon>
                             <component :is="isExpanded ? ChevronUp : ChevronDown" />
                         </el-icon>
                     </el-link>
-                    <slot name="extra-btns"></slot>
                 </el-col>
             </el-row>
         </c-validate>
@@ -117,8 +116,10 @@ const getMergedAttrs = (config) => {
     align-items: center;
     gap: 12px;
     margin-bottom: 18px;
-    /* 确保按钮组在当前行空间不足时会自动换行并右侧对齐（可选） */
     flex-wrap: nowrap;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
 }
 
 .expand-link {
