@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, MessageSquare, Table2, Form, Search } from 'lucide-vue-next'
+import { LayoutDashboard, Users, MessageSquare, Table2, Form, Search, Upload } from 'lucide-vue-next'
 
 export default [
     {
@@ -60,6 +60,16 @@ export default [
                 meta: {
                     title: '表单示例',
                     icon: Form,
+                    requiresAuth: true
+                }
+            },
+            {
+                path: '/upload',
+                name: 'upload',
+                component: () => import('@/views/Demo/Upload.vue'),
+                meta: {
+                    title: '上传示例',
+                    icon: Upload,
                     requiresAuth: true
                 }
             }
