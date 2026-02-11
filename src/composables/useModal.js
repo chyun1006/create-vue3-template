@@ -1,6 +1,6 @@
 import { h, ref, provide, inject, onBeforeUnmount, createApp, getCurrentInstance } from 'vue'
 import { ElDialog, ElButton, ElConfigProvider, ElIcon } from 'element-plus'
-import { Check } from '@element-plus/icons-vue'
+import { Check } from 'lucide-vue-next'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const MODAL_CONTEXT = Symbol('modalContext')
