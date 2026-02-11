@@ -233,6 +233,11 @@ a {
     }
 }
 
+// Element Plus Dialog 圆角样式
+.el-dialog {
+    border-radius: 12px; // rounded-xl
+}
+
 // 弹窗内按钮样式 - 参考 KnowledgeDirectoryManagement.tsx
 .el-dialog__footer {
     .el-button {
