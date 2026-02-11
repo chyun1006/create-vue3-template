@@ -233,3 +233,35 @@ a {
     }
 }
 
+// 弹窗内按钮样式 - 参考 KnowledgeDirectoryManagement.tsx
+.el-dialog__footer {
+    .el-button {
+        // Link 按钮样式(用于取消按钮)
+        &.is-link {
+            color: rgb(156, 163, 175) !important;
+            font-weight: 900;
+            font-size: 14px !important;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.75rem 1.25rem !important;
+            min-height: 40px;
+            
+            &:hover {
+                color: rgb(75, 85, 99) !important;
+            }
+        }
+        
+        // 确认按钮(primary 按钮)
+        &--primary {
+            padding: 0.75rem 1.75rem !important;
+            font-size: 14px !important;
+            font-weight: 900;
+            border-radius: 12px !important;
+            text-transform: none;
+            letter-spacing: normal;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+        }
+    }
+}

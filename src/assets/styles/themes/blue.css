@@ -7,7 +7,7 @@
     --card-foreground: oklch(0.141 0.005 285.823);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.141 0.005 285.823);
-    --primary: oklch(0.548 0.22 251.684);
+    --primary: rgb(37 99 235);
     --primary-foreground: oklch(0.986 0.031 240.757);
     --success: oklch(0.723 0.176 139.714);
     --success-foreground: oklch(0.985 0 0);
@@ -33,7 +33,7 @@
     --sidebar: rgb(0 12 23);
     --sidebar-logo: rgb(0 33 64);
     --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.548 0.22 251.684);
+    --sidebar-primary: rgb(37 99 235);
     --sidebar-primary-foreground: oklch(0.986 0.031 240.757);
     --sidebar-accent: oklch(0.967 0.001 286.375);
     --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
@@ -41,7 +41,7 @@
     --sidebar-ring: oklch(0.741 0.238 248.85);
     
     /* RGB 颜色变量用于阴影效果 */
-    --primary-rgb: 64, 158, 255;
+    --primary-rgb: 37, 99, 235;
     --success-rgb: 103, 194, 58;
     --warning-rgb: 230, 162, 60;
     --danger-rgb: 245, 108, 108;
@@ -87,7 +87,7 @@
     --sidebar-ring: oklch(0.405 0.101 251.063);
     
     /* RGB 颜色变量用于阴影效果 */
-    --primary-rgb: 64, 158, 255;
+    --primary-rgb: 37, 99, 235;
     --success-rgb: 103, 194, 58;
     --warning-rgb: 230, 162, 60;
     --danger-rgb: 245, 108, 108;
