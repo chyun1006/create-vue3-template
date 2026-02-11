@@ -16,6 +16,9 @@
 // 4. 导入 Element Plus 主题样式(使用自定义变量)
 // @use 'element-plus/theme-chalk/src/index.scss' as *;
 
+// 6. 导入侧边栏主题系统
+@use './sidebar' as *;
+
 // 5. 导入主题变量 (CSS 文件使用 @import)
 @import './themes/index.css';
 
@@ -63,13 +66,8 @@ html:root {
     
     // 弹窗内边距
     --el-dialog-padding-primary: 0;
-
-    // 侧边栏变量同步
-    --sidebar-bg: var(--sidebar);
-    --sidebar-logo-bg: var(--sidebar-logo);
-    --sidebar-text: var(--sidebar-foreground);
-    --sidebar-active-bg: var(--sidebar-accent);
 }
+
 
 * {
     margin: 0;
@@ -257,8 +255,9 @@ a {
         }
         
         .el-dialog__headerbtn {
-            top: 1.5rem;
+            top: 0.9rem;
             right: 1.5rem;
+            font-size: 22px;
             
             .el-dialog__close {
                 color: rgb(209, 213, 219);

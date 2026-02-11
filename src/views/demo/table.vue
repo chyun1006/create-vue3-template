@@ -63,7 +63,7 @@
             <!-- 展开行 -->
             <section class="demo-section">
                 <h3>5. 展开行</h3>
-                <c-table :columns="basicColumns" :dataSource="arrayData" :pagination="true" expend>
+                <c-table :columns="basicColumns" :dataSource="arrayData" :pagination="true" expand>
                     <template #expand="{ props }">
                         <div style="padding: 12px">
                             <p><strong>详细信息:</strong></p>

@@ -1,0 +1,71 @@
+@use "./light.scss";
+@use "./dark.scss";
+
+// 侧边栏基础样式与主题变量应用
+.sidebar-container {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border); // 统一右边框放在容器上
+
+    .logo-container {
+        background-color: var(--sidebar-logo-bg);
+        // border-bottom: 1px solid var(--sidebar-border);
+        
+        .logo-title {
+            color: var(--sidebar-text);
+        }
+    }
+
+    .sidebar-scrollbar {
+        background-color: var(--sidebar-bg);
+    }
+
+    // 应用主题变量实现的详细样式
+    &.theme-sidebar-light, &.theme-sidebar-dark {
+        .el-menu-vertical {
+            border-right: none; // 移除菜单自带的右边框
+
+            .el-sub-menu__title {
+                color: var(--sidebar-text) !important;
+
+                &:hover {
+                    background-color: var(--sidebar-hover-bg) !important;
+                }
+
+                .el-icon {
+                    color: var(--sidebar-text) !important;
+                }
+            }
+
+            .el-menu-item {
+                color: var(--sidebar-text) !important;
+                position: relative; // 为伪元素定位
+
+                &:hover {
+                    background-color: var(--sidebar-hover-bg) !important;
+                }
+
+                &.is-active {
+                    color: var(--sidebar-active-text) !important;
+                    background-color: var(--sidebar-active-bg) !important;
+                    
+                    // 改为左侧指示条
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 3px;
+                        height: 16px;
+                        background-color: var(--el-color-primary);
+                        border-radius: 0 4px 4px 0;
+                    }
+
+                    span, .el-icon {
+                        color: var(--sidebar-active-text) !important;
+                    }
+                }
+            }
+        }
+    }
+}

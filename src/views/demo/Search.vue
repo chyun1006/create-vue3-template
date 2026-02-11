@@ -11,16 +11,16 @@
             </template>
         </c-search>
 
-        <el-card class="result-card">
+        <c-card>
             <template #header>
                 <div class="card-header">
                     <span>当前搜索条件 (实时预览)</span>
                 </div>
             </template>
             <pre class="code-block">{{ JSON.stringify(searchModel, null, 2) }}</pre>
-        </el-card>
+        </c-card>
 
-        <el-card class="mt-4">
+        <c-card class="mt-4">
             <el-table :data="tableData" border style="width: 100%">
                 <el-table-column prop="date" label="Date" width="180" />
                 <el-table-column prop="name" label="Name" width="180" />
@@ -28,7 +28,7 @@
                 <el-table-column prop="role" label="Role" />
                 <el-table-column prop="amount" label="Amount" />
             </el-table>
-        </el-card>
+        </c-card>
     </div>
 </template>
 

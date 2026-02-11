@@ -21,7 +21,8 @@ defineOptions({
 .c-card {
     background-color: white;
     border-radius: 0.75rem;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    border: 1px solid #ebeef5;
+    /* box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); */
     border: 1px solid rgb(229 231 235);
 }
 
