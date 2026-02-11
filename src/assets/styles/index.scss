@@ -57,6 +57,9 @@ html:root {
     --el-bg-color: var(--background);
     --el-text-color-primary: var(--foreground);
     --el-border-color: var(--border);
+    
+    // 按钮圆角
+    --el-border-radius-base: 8px;
 
     // 侧边栏变量同步
     --sidebar-bg: var(--sidebar);
@@ -96,3 +99,137 @@ a {
         opacity: 0.8;
     }
 }
+
+// Element Plus 按钮样式增强 - 参考 KnowledgeDirectoryManagement.tsx
+.el-button {
+    // 基础样式增强
+    border-radius: 8px; // 调整为 8px
+    font-weight: 700; // 使用 700 保持可读性
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    // Primary 按钮
+    &--primary {
+        box-shadow: 
+            0 10px 15px -3px rgba(var(--primary-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--primary-rgb), 0.1);
+        
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 20px 25px -5px rgba(var(--primary-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--primary-rgb), 0.15);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Success 按钮
+    &--success {
+        box-shadow: 
+            0 10px 15px -3px rgba(var(--success-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--success-rgb), 0.1);
+        
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 20px 25px -5px rgba(var(--success-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--success-rgb), 0.15);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Warning 按钮
+    &--warning {
+        box-shadow: 
+            0 10px 15px -3px rgba(var(--warning-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--warning-rgb), 0.1);
+        
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 20px 25px -5px rgba(var(--warning-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--warning-rgb), 0.15);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Danger 按钮
+    &--danger {
+        box-shadow: 
+            0 10px 15px -3px rgba(var(--danger-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--danger-rgb), 0.1);
+        
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 20px 25px -5px rgba(var(--danger-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--danger-rgb), 0.15);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Default 按钮 - 轻微效果
+    &--default:not(.is-text):not(.is-link) {
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Info 按钮
+    &--info {
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Plain 按钮 - 只有微动效
+    &.is-plain {
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // Text 和 Link 按钮 - 只有缩放效果
+    &.is-text,
+    &.is-link {
+        border-radius: 6px; // 更小的圆角
+        
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+    
+    // 禁用状态 - 移除所有动画效果
+    &:disabled,
+    &.is-disabled {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+

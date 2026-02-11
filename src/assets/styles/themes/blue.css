@@ -39,6 +39,12 @@
     --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
     --sidebar-border: oklch(0.92 0.004 286.32);
     --sidebar-ring: oklch(0.741 0.238 248.85);
+    
+    /* RGB 颜色变量用于阴影效果 */
+    --primary-rgb: 64, 158, 255;
+    --success-rgb: 103, 194, 58;
+    --warning-rgb: 230, 162, 60;
+    --danger-rgb: 245, 108, 108;
 }
 
 .dark {
@@ -79,4 +85,10 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.405 0.101 251.063);
+    
+    /* RGB 颜色变量用于阴影效果 */
+    --primary-rgb: 64, 158, 255;
+    --success-rgb: 103, 194, 58;
+    --warning-rgb: 230, 162, 60;
+    --danger-rgb: 245, 108, 108;
 }
