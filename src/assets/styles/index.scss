@@ -60,6 +60,9 @@ html:root {
     
     // 按钮圆角
     --el-border-radius-base: 8px;
+    
+    // 弹窗内边距
+    --el-dialog-padding-primary: 0;
 
     // 侧边栏变量同步
     --sidebar-bg: var(--sidebar);
@@ -233,9 +236,57 @@ a {
     }
 }
 
-// Element Plus Dialog 圆角样式
+// Element Plus Dialog 样式 - 参考 KnowledgeDirectoryManagement.tsx
 .el-dialog {
     border-radius: 12px; // rounded-xl
+    overflow: hidden;
+    padding: 0 !important;
+    
+    // Header 样式
+    .el-dialog__header {
+        padding: 1.5rem;
+        margin: 0;
+        background: rgba(249, 251, 254, 0.5);
+        border-bottom: 1px solid rgb(249, 250, 251);
+        
+        .el-dialog__title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: rgb(17, 24, 39);
+            letter-spacing: -0.025em;
+        }
+        
+        .el-dialog__headerbtn {
+            top: 1.5rem;
+            right: 1.5rem;
+            
+            .el-dialog__close {
+                color: rgb(209, 213, 219);
+                
+                &:hover {
+                    color: rgb(107, 114, 128);
+                }
+            }
+        }
+    }
+    
+    // Body 样式
+    .el-dialog__body {
+        padding: 0 !important;
+        background: white;
+    }
+    
+    // Footer 样式
+    .el-dialog__footer {
+        padding: 1rem 1.5rem;
+        margin: 0;
+        background: rgb(249, 250, 251);
+        border-top: 1px solid rgb(229, 231, 235);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
 }
 
 // 弹窗内按钮样式 - 参考 KnowledgeDirectoryManagement.tsx
