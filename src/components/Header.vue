@@ -15,7 +15,7 @@
 
         <div class="header-right">
             <!-- 主题切换器 -->
-            <!-- <theme-switcher class="mr-4" /> -->
+            <theme-switcher class="mr-4" />
 
             <el-dropdown @command="handleCommand" trigger="click">
                 <div class="user-info">

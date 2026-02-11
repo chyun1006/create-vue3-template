@@ -16,6 +16,9 @@
 // 4. 导入 Element Plus 主题样式(使用自定义变量)
 // @use 'element-plus/theme-chalk/src/index.scss' as *;
 
+// 6. 导入侧边栏主题系统
+@use './sidebar' as *;
+
 // 5. 导入主题变量 (CSS 文件使用 @import)
 @import './themes/index.css';
 
@@ -58,16 +61,11 @@ html:root {
     --el-text-color-primary: var(--foreground);
     --el-border-color: var(--border);
 
-    // 侧边栏变量同步
-    --sidebar-bg: var(--sidebar);
-    --sidebar-logo-bg: var(--sidebar-logo);
-    --sidebar-text: var(--sidebar-foreground);
-    --sidebar-active-bg: var(--sidebar-accent);
-}
+    // 按钮圆角
+    --el-border-radius-base: 8px;
 
-// 强制覆盖弹窗背景色变量
-.el-dialog {
-    --el-bg-color: #ffffff;
+    // 弹窗内边距
+    --el-dialog-padding-primary: 0;
 }
 
 
@@ -100,5 +98,225 @@ a {
 
     &:hover {
         opacity: 0.8;
+    }
+}
+
+// Element Plus 按钮样式增强 - 参考 KnowledgeDirectoryManagement.tsx
+.el-button {
+    // 基础样式增强
+    border-radius: 8px; // 调整为 8px
+    font-weight: 700; // 使用 700 保持可读性
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // Primary 按钮
+    &--primary {
+        box-shadow:
+            0 10px 15px -3px rgba(var(--primary-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--primary-rgb), 0.1);
+
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 20px 25px -5px rgba(var(--primary-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--primary-rgb), 0.15);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Success 按钮
+    &--success {
+        box-shadow:
+            0 10px 15px -3px rgba(var(--success-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--success-rgb), 0.1);
+
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 20px 25px -5px rgba(var(--success-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--success-rgb), 0.15);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Warning 按钮
+    &--warning {
+        box-shadow:
+            0 10px 15px -3px rgba(var(--warning-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--warning-rgb), 0.1);
+
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 20px 25px -5px rgba(var(--warning-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--warning-rgb), 0.15);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Danger 按钮
+    &--danger {
+        box-shadow:
+            0 10px 15px -3px rgba(var(--danger-rgb), 0.2),
+            0 4px 6px -4px rgba(var(--danger-rgb), 0.1);
+
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 20px 25px -5px rgba(var(--danger-rgb), 0.25),
+                0 8px 10px -6px rgba(var(--danger-rgb), 0.15);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Default 按钮 - 轻微效果
+    &--default:not(.is-text):not(.is-link) {
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Info 按钮
+    &--info {
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Plain 按钮 - 只有微动效
+    &.is-plain {
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // Text 和 Link 按钮 - 只有缩放效果
+    &.is-text,
+    &.is-link {
+        border-radius: 6px; // 更小的圆角
+
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+    }
+
+    // 禁用状态 - 移除所有动画效果
+    &:disabled,
+    &.is-disabled {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
+
+// Element Plus Dialog 样式 - 参考 KnowledgeDirectoryManagement.tsx
+.el-dialog {
+    border-radius: 12px; // rounded-xl
+    overflow: hidden;
+    padding: 0 !important;
+
+    // Header 样式
+    .el-dialog__header {
+        padding: 1.5rem;
+        margin: 0;
+        background: rgba(249, 251, 254, 0.5);
+        border-bottom: 1px solid rgb(249, 250, 251);
+
+        .el-dialog__title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: rgb(17, 24, 39);
+            letter-spacing: -0.025em;
+        }
+
+        .el-dialog__headerbtn {
+            top: 0.9rem;
+            right: 1.5rem;
+            font-size: 22px;
+
+            .el-dialog__close {
+                color: rgb(209, 213, 219);
+
+                &:hover {
+                    color: rgb(107, 114, 128);
+                }
+            }
+        }
+    }
+
+    // Body 样式
+    .el-dialog__body {
+        padding: 0 !important;
+        background: white;
+    }
+
+    // Footer 样式
+    .el-dialog__footer {
+        padding: 1rem 1.5rem;
+        margin: 0;
+        background: rgb(249, 250, 251);
+        border-top: 1px solid rgb(229, 231, 235);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+}
+
+// 弹窗内按钮样式 - 参考 KnowledgeDirectoryManagement.tsx
+.el-dialog__footer {
+    .el-button {
+        // Link 按钮样式(用于取消按钮)
+        &.is-link {
+            color: rgb(156, 163, 175) !important;
+            font-weight: 900;
+            font-size: 14px !important;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 0.75rem 1.25rem !important;
+            min-height: 40px;
+
+            &:hover {
+                color: rgb(75, 85, 99) !important;
+            }
+        }
+
+        // 确认按钮(primary 按钮)
+        &--primary {
+            padding: 0.75rem 1.75rem !important;
+            font-size: 14px !important;
+            font-weight: 900;
+            border-radius: 12px !important;
+            text-transform: none;
+            letter-spacing: normal;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+        }
     }
 }

@@ -1,5 +1,6 @@
 import { h, ref, provide, inject, onBeforeUnmount, createApp, getCurrentInstance } from 'vue'
-import { ElDialog, ElButton, ElConfigProvider } from 'element-plus'
+import { ElDialog, ElButton, ElConfigProvider, ElIcon } from 'element-plus'
+import { Check } from '@element-plus/icons-vue'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const MODAL_CONTEXT = Symbol('modalContext')
@@ -205,6 +206,7 @@ export const useModal = function () {
                                             h(
                                                 this.ElButton,
                                                 {
+                                                    link: true,
                                                     onClick: this.onDialogClose
                                                 },
                                                 { default: () => '取消' }
@@ -216,7 +218,20 @@ export const useModal = function () {
                                                     loading: this.confirmLoading,
                                                     onClick: this.onDialogConfirm
                                                 },
-                                                { default: () => '确定' }
+                                                {
+                                                    default: () => [
+                                                        h(
+                                                            ElIcon,
+                                                            {
+                                                                style: {
+                                                                    marginRight: '6px'
+                                                                }
+                                                            },
+                                                            { default: () => h(Check) }
+                                                        ),
+                                                        ' 确定'
+                                                    ]
+                                                }
                                             )
                                         ])
                                 }

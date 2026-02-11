@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar-container" :class="{ collapsed: isCollapsed }">
+    <div class="sidebar-container" :class="[isCollapsed ? 'collapsed' : '', `theme-sidebar-${sidebarTheme}`]">
         <div class="logo-container">
             <transition name="fade">
                 <span v-if="!isCollapsed" class="logo-title">Vue3 Template</span>
@@ -29,6 +29,8 @@ const appStore = useAppStore()
 const userStore = useUserStore()
 
 const isCollapsed = computed(() => appStore.sidebarCollapsed)
+// 侧边栏主题：可选 'light' 或 'dark'，默认为 'light'
+const sidebarTheme = computed(() => appStore.sidebarTheme || 'light')
 const menuList = computed(() => getMenuConfig(userStore.menus || []))
 const activeMenu = computed(() => route.path)
 </script>
@@ -37,7 +39,6 @@ const activeMenu = computed(() => route.path)
 .sidebar-container {
     height: 100%;
     width: 256px;
-    background-color: var(--sidebar-bg);
     transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: width;
     overflow: hidden;
@@ -50,18 +51,15 @@ const activeMenu = computed(() => route.path)
 
     .logo-container {
         height: 60px;
-        background-color: var(--sidebar-logo-bg);
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0 16px;
         overflow: hidden;
         white-space: nowrap;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         position: relative;
 
         .logo-title {
-            color: var(--sidebar-text, white);
             font-weight: 600;
             font-size: 18px;
             position: absolute;
@@ -72,7 +70,6 @@ const activeMenu = computed(() => route.path)
 
     .sidebar-scrollbar {
         flex: 1;
-        background-color: var(--sidebar-bg);
 
         :deep(.el-scrollbar__wrap) {
             overflow-x: hidden;
@@ -80,7 +77,6 @@ const activeMenu = computed(() => route.path)
     }
 
     .el-menu-vertical {
-        border-right: none;
         background-color: transparent !important;
         height: 100%;
 
@@ -90,32 +86,6 @@ const activeMenu = computed(() => route.path)
 
         :deep(.el-menu) {
             background-color: transparent !important;
-        }
-
-        :deep(.el-sub-menu__title) {
-            color: var(--sidebar-text, #bfcbd9) !important;
-
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.08) !important;
-            }
-        }
-
-        :deep(.el-menu-item) {
-            color: var(--sidebar-text, #bfcbd9) !important;
-
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.08) !important;
-            }
-
-            &.is-active {
-                color: #ffffff !important;
-                background-color: color-mix(in oklch, var(--el-color-primary), transparent 70%) !important;
-                border-right: 3px solid var(--el-color-primary);
-
-                :deep(span) {
-                    color: #ffffff !important;
-                }
-            }
         }
     }
 }

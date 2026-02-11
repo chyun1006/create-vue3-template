@@ -1,0 +1,10 @@
+// Sidebar Dark Theme
+.theme-sidebar-dark {
+    --sidebar-bg: rgb(0 12 23);
+    --sidebar-logo-bg: rgb(0 33 64);
+    --sidebar-text: #bfcbd9;
+    --sidebar-active-bg: var(--sidebar-primary, #1677ff);
+    --sidebar-active-text: #ffffff;
+    --sidebar-hover-bg: rgba(255, 255, 255, 0.08);
+    --sidebar-border: rgba(255, 255, 255, 0.05);
+}

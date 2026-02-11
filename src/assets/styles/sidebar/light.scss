@@ -1,0 +1,10 @@
+// Sidebar Light Theme
+.theme-sidebar-light {
+    --sidebar-bg: #ffffff;
+    --sidebar-logo-bg: #ffffff;
+    --sidebar-text: rgb(31 41 55);
+    --sidebar-active-bg: color-mix(in oklch, var(--sidebar-primary, #1677ff), transparent 60%);
+    --sidebar-active-text: var(--sidebar-primary, #1677ff);
+    --sidebar-hover-bg: rgb(243 244 246);
+    --sidebar-border: rgb(229 231 235);
+}

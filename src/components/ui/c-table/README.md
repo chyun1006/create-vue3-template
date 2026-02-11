@@ -75,7 +75,7 @@ const refresh = () => {
 | checkable          | Boolean           | false                                     | 是否显示多选框                    |
 | indexable          | Boolean           | false                                     | 是否显示序号列                    |
 | indexFixed         | String            | -                                         | 序号列固定位置('left' \| 'right') |
-| expend             | Boolean           | false                                     | 是否支持展开行                    |
+| expand             | Boolean           | false                                     | 是否支持展开行                    |
 | autoQuery          | Boolean           | true                                      | 是否自动查询(仅 Promise 数据源)   |
 | isNewTable         | Boolean           | false                                     | 使用新数据格式                    |
 | useLocalPagination | Boolean           | false                                     | 强制使用本地分页                  |
@@ -180,7 +180,7 @@ const getSelected = () => {
 
 ```vue
 <template>
-    <c-table :columns="columns" :dataSource="users" expend>
+    <c-table :columns="columns" :dataSource="users" expand>
         <template #expand="{ props }">
             <div style="padding: 12px">
                 <p>详细信息: {{ props.row }}</p>

@@ -1,14 +1,15 @@
 <template>
-    <el-table header-cell-class-name="table-header-cell-class-name" ref="tableRef" :data="tableData" v-loading="loading" v-bind="$attrs" @selection-change="handleSelectionChange" :header-cell-style="{ background: '#f9fafb' }">
+    <el-table header-cell-class-name="table-header-cell-class-name" ref="tableRef" :data="tableData" v-loading="loading" v-bind="$attrs" @selection-change="handleSelectionChange" :row-key="rowKey" :header-cell-style="{ background: '#f9fafb' }">
         <el-table-column v-if="checkable && !latest" type="selection" width="55" :selectable="(row) => !row.disabled" />
 
-        <el-table-column type="expand" v-if="expend">
+        <el-table-column type="expand" v-if="expand">
             <template #default="props">
                 <slot name="expand" :props="props"></slot>
             </template>
         </el-table-column>
 
-        <el-table-column align="center" :fixed="indexFixed" v-if="indexable" key="index" prop="index" width="60" label="序号">
+        <el-table-column align="center" :fixed="indexFixed" v-if="indexable" key="index" prop="index" width="60"
+            label="序号">
             <template #default="{ $index }">{{ (current - 1) * pageSize + $index + 1 }}</template>
         </el-table-column>
 
@@ -27,22 +28,14 @@
         </template>
     </el-table>
     <div v-if="showPagination" class="table-pagination">
-        <el-pagination
-            v-bind="$attrs"
-            :current-page="current"
-            :page-sizes="[5, 10, 20, 50, 100]"
-            :page-size="pageSize"
-            :total="total"
-            :layout="layout"
-            @size-change="_handleSizeChange"
-            @current-change="_handleCurrentChange"
-        >
+        <el-pagination v-bind="$attrs" :current-page="current" :page-sizes="[5, 10, 20, 50, 100]" :page-size="pageSize"
+            :total="total" :layout="layout" @size-change="_handleSizeChange" @current-change="_handleCurrentChange">
         </el-pagination>
     </div>
 </template>
 
 <script setup>
-import { ref, reactive, provide, watch, toRaw, nextTick, isRef } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import TableColumn from './table-column.vue'
 import { useTable } from './useTable'
 import { computed } from 'vue'
@@ -58,7 +51,11 @@ const props = defineProps({
     indexFixed: String,
     spining: Boolean,
     /** 是否展开 */
-    expend: Boolean,
+    expand: Boolean,
+    rowKey: {
+        type: String,
+        default: 'id'
+    },
     latest: Boolean,
     defaultParams: Object,
     totalCount: Number,
@@ -135,11 +132,11 @@ watch(
     (newV) => {
         // 设置默认选中行
         if (props.checkable) {
-            const rows = (newV || []).filter((r) => r.disabled)
+            // const rows = (newV || []).filter((r) => r.disabled)
             // setRowSelecttion(rows);
         }
         // 数据更新后，将展开的行合上
-        if (props.expend) {
+        if (props.expand) {
             setRowExpand(newV)
         }
     },
@@ -157,7 +154,7 @@ watch(
 
 function setRowSelecttion(rows) {
     nextTick(() => {
-        ;(rows || []).map((r) => {
+        (rows || []).map((r) => {
             tableRef.value.toggleRowSelection(r, true)
         })
     })
@@ -165,7 +162,7 @@ function setRowSelecttion(rows) {
 
 function setRowExpand(rows) {
     nextTick(() => {
-        ;(rows || []).map((r) => {
+        (rows || []).map((r) => {
             tableRef.value.toggleRowExpansion(r, false)
         })
     })
