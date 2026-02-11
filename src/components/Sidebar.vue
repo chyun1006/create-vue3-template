@@ -81,7 +81,7 @@ const activeMenu = computed(() => route.path)
         height: 100%;
 
         &:not(.el-menu--collapse) {
-            width: 256px;
+            width: 100% !important;
         }
 
         :deep(.el-menu) {

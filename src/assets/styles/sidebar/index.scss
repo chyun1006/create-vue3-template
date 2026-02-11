@@ -23,6 +23,8 @@
     &.theme-sidebar-light, &.theme-sidebar-dark {
         .el-menu-vertical {
             border-right: none; // 移除菜单自带的右边框
+            width: 100%;
+            overflow-x: hidden;
 
             .el-sub-menu__title {
                 color: var(--sidebar-text) !important;
