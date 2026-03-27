@@ -18,5 +18,12 @@ app.use(router)
 app.use(uiComponents)
 app.directive('permission', sso.createPermissionDirective())
 app.provide('sso', sso)
+app.config.globalProperties.$hasPermission = (value) => {
+  if (!value) return true
+  if (Array.isArray(value)) {
+    return value.some(code => sso.hasPermission(code))
+  }
+  return sso.hasPermission(value)
+}
 
 app.mount('#app')

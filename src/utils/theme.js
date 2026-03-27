@@ -27,7 +27,7 @@ export const themes = {
 /**
  * 默认主题
  */
-export const DEFAULT_THEME = 'green'
+export const DEFAULT_THEME = 'Teal'
 
 /**
  * 主题管理类

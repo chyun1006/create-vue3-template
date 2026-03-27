@@ -11,6 +11,7 @@
             <p class="exception-hint">请检查URL是否正确,或者返回首页继续浏览</p>
             <div class="exception-actions">
                 <el-button type="primary" @click="goHome">返回首页</el-button>
+                <el-button @click="handleLogout">重新登录</el-button>
                 <el-button @click="goBack">返回上一页</el-button>
             </div>
         </div>
@@ -18,13 +19,23 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { FileQuestion } from 'lucide-vue-next'
+import sso from '@/utils/sso'
 
+const route = useRoute()
 const router = useRouter()
 
 const goHome = () => {
     router.push('/')
+}
+
+const handleLogout = () => {
+    // 优先从 query 中获取重定向来源，如果没有则回退到首页
+    const redirectPath = route.query.redirect || '/'
+    const currentFullPath = window.location.origin + window.location.pathname
+    const returnUrl = currentFullPath + router.resolve({ path: redirectPath }).href
+    sso.logout(returnUrl)
 }
 
 const goBack = () => {

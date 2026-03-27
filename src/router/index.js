@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import homeRoutes from './moduels/home'
 import demoRoutes from './moduels/demo'
+import { flatAsyncRoutes } from './router.config'
 
-export const asyncRoutes = [...homeRoutes, ...demoRoutes]
+export const asyncRoutes = [...flatAsyncRoutes]
 
 const staticRoutes = [
     {
@@ -24,7 +25,7 @@ const staticRoutes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHashHistory(),
     routes: [...staticRoutes]
 })
 

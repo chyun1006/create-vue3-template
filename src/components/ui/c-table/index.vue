@@ -149,6 +149,9 @@ watch(
     () => props.spining,
     (newV) => {
         loading.value = newV
+    },
+    {
+        immediate: true
     }
 )
 

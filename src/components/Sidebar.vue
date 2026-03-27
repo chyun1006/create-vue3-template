@@ -20,7 +20,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
-import { getMenuConfig } from '@/config/router.config'
+import { getMenuConfig } from '@/utils/routeHelper'
 import SidebarItem from './SidebarItem.vue'
 import { useUserStore } from '@/stores/user'
 
@@ -32,7 +32,10 @@ const isCollapsed = computed(() => appStore.sidebarCollapsed)
 // 侧边栏主题：可选 'light' 或 'dark'，默认为 'light'
 const sidebarTheme = computed(() => appStore.sidebarTheme || 'light')
 const menuList = computed(() => getMenuConfig(userStore.menus || []))
-const activeMenu = computed(() => route.path)
+const activeMenu = computed(() => {
+    const { meta, path } = route
+    return meta?.activePath || path
+})
 </script>
 
 <style lang="scss" scoped>
