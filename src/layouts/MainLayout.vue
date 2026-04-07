@@ -5,13 +5,22 @@
         <div class="main-container" :class="{ expanded: isCollapsed }">
             <app-header />
 
-            <div class="content-wrapper">
-                <router-view v-slot="{ Component, route }">
-                    <keep-alive>
-                        <component :is="Component" v-if="route.meta.keepAlive" :key="route.path" />
-                    </keep-alive>
-                    <component :is="Component" v-if="!route.meta.keepAlive" :key="route.path" />
-                </router-view>
+            <div 
+                class="content-wrapper" 
+                v-loading="loading"
+                :element-loading-text="loadingConfig.text"
+                :element-loading-background="loadingConfig.background"
+                :element-loading-spinner="loadingConfig.spinner"
+                :element-loading-custom-class="loadingConfig.customClass"
+            >
+                <div class="content-scroller">
+                    <router-view v-slot="{ Component, route }">
+                        <keep-alive>
+                            <component :is="Component" v-if="route.meta.keepAlive" :key="route.path" />
+                        </keep-alive>
+                        <component :is="Component" v-if="!route.meta.keepAlive" :key="route.path" />
+                    </router-view>
+                </div>
             </div>
         </div>
     </div>
@@ -22,9 +31,11 @@ import { computed } from 'vue'
 import { useAppStore } from '@/stores/app'
 import Sidebar from '@/components/Sidebar.vue'
 import AppHeader from '@/components/Header.vue'
+import { useLoading } from '@/composables/useLoading'
 
 const appStore = useAppStore()
 const isCollapsed = computed(() => appStore.sidebarCollapsed)
+const { loading, loadingConfig } = useLoading()
 </script>
 
 <style lang="scss" scoped>
@@ -50,6 +61,11 @@ const isCollapsed = computed(() => appStore.sidebarCollapsed)
 
         .content-wrapper {
             flex: 1;
+            overflow: hidden;
+        }
+
+        .content-scroller {
+            height: 100%;
             padding: 20px;
             overflow-y: auto;
             overflow-x: hidden;
