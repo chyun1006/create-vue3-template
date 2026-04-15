@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import legacy from '@vitejs/plugin-legacy'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -16,6 +17,11 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver()],
+    }),
+    legacy({
+      targets: ['chrome >= 109', 'edge >= 109', 'safari >= 13'],
+      renderLegacyChunks: true,
+      additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     }),
   ],
   resolve: {

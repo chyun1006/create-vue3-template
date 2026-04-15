@@ -26,36 +26,36 @@
 html:root {
     // 建立变量映射层,将自定义主题变量同步到 Element Plus 的 CSS 变量
     --el-color-primary: var(--primary);
-    --el-color-primary-light-3: color-mix(in oklch, var(--primary), white 30%);
-    --el-color-primary-light-5: color-mix(in oklch, var(--primary), white 50%);
-    --el-color-primary-light-7: color-mix(in oklch, var(--primary), white 70%);
-    --el-color-primary-light-8: color-mix(in oklch, var(--primary), white 80%);
-    --el-color-primary-light-9: color-mix(in oklch, var(--primary), white 90%);
-    --el-color-primary-dark-2: color-mix(in oklch, var(--primary), black 20%);
+    --el-color-primary-light-3: var(--primary-light-3);
+    --el-color-primary-light-5: var(--primary-light-5);
+    --el-color-primary-light-7: var(--primary-light-7);
+    --el-color-primary-light-8: var(--primary-light-8);
+    --el-color-primary-light-9: var(--primary-light-9);
+    --el-color-primary-dark-2: var(--primary-dark-2);
 
     --el-color-success: var(--success);
-    --el-color-success-light-3: color-mix(in oklch, var(--success), white 30%);
-    --el-color-success-light-5: color-mix(in oklch, var(--success), white 50%);
-    --el-color-success-light-7: color-mix(in oklch, var(--success), white 70%);
-    --el-color-success-light-8: color-mix(in oklch, var(--success), white 80%);
-    --el-color-success-light-9: color-mix(in oklch, var(--success), white 90%);
-    --el-color-success-dark-2: color-mix(in oklch, var(--success), black 20%);
+    --el-color-success-light-3: var(--success-light-3, var(--success));
+    --el-color-success-light-5: var(--success-light-5, var(--success));
+    --el-color-success-light-7: var(--success-light-7, var(--success));
+    --el-color-success-light-8: var(--success-light-8, var(--success));
+    --el-color-success-light-9: var(--success-light-9, var(--success));
+    --el-color-success-dark-2: var(--success-dark-2, var(--success));
 
     --el-color-warning: var(--warning);
-    --el-color-warning-light-3: color-mix(in oklch, var(--warning), white 30%);
-    --el-color-warning-light-5: color-mix(in oklch, var(--warning), white 50%);
-    --el-color-warning-light-7: color-mix(in oklch, var(--warning), white 70%);
-    --el-color-warning-light-8: color-mix(in oklch, var(--warning), white 80%);
-    --el-color-warning-light-9: color-mix(in oklch, var(--warning), white 90%);
-    --el-color-warning-dark-2: color-mix(in oklch, var(--warning), black 20%);
+    --el-color-warning-light-3: var(--warning-light-3, var(--warning));
+    --el-color-warning-light-5: var(--warning-light-5, var(--warning));
+    --el-color-warning-light-7: var(--warning-light-7, var(--warning));
+    --el-color-warning-light-8: var(--warning-light-8, var(--warning));
+    --el-color-warning-light-9: var(--warning-light-9, var(--warning));
+    --el-color-warning-dark-2: var(--warning-dark-2, var(--warning));
 
     --el-color-danger: var(--destructive);
-    --el-color-danger-light-3: color-mix(in oklch, var(--destructive), white 30%);
-    --el-color-danger-light-5: color-mix(in oklch, var(--destructive), white 50%);
-    --el-color-danger-light-7: color-mix(in oklch, var(--destructive), white 70%);
-    --el-color-danger-light-8: color-mix(in oklch, var(--destructive), white 80%);
-    --el-color-danger-light-9: color-mix(in oklch, var(--destructive), white 90%);
-    --el-color-danger-dark-2: color-mix(in oklch, var(--destructive), black 20%);
+    --el-color-danger-light-3: var(--danger-light-3, var(--destructive));
+    --el-color-danger-light-5: var(--danger-light-5, var(--destructive));
+    --el-color-danger-light-7: var(--danger-light-7, var(--destructive));
+    --el-color-danger-light-8: var(--danger-light-8, var(--destructive));
+    --el-color-danger-light-9: var(--danger-light-9, var(--destructive));
+    --el-color-danger-dark-2: var(--danger-dark-2, var(--destructive));
 
     --el-bg-color: var(--background);
     --el-text-color-primary: var(--foreground);

@@ -15,7 +15,7 @@
     "@airtravel/sso-login": "1.0.2",
     "axios": "1.6.0",
     "dayjs": "1.11.19",
-    "element-plus": "2.5.0",
+    "element-plus": "2.11.0",
     "lucide-vue-next": "0.563.0",
     "pinia": "2.1.0",
     "vue": "3.4.0",
@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "5.0.0",
+    "@vitejs/plugin-legacy": "^5.3.0",
+    "terser": "^5.27.0",
     "autoprefixer": "10.4.0",
     "eslint": "8.56.0",
     "eslint-plugin-vue": "9.19.0",

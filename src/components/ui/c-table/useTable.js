@@ -74,7 +74,7 @@ export function useTable(props) {
         total.value = localDataSource.length
 
         // 如果使用本地分页,计算分页数据
-        if (props.useLocalPagination || isArrayDataSource()) {
+        if ((props.useLocalPagination || isArrayDataSource()) && props.pagination !== false) {
             calculateLocalPagination()
         } else {
             tableData.value = localDataSource
