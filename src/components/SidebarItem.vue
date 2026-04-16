@@ -37,6 +37,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
+import { APP_CONFIG } from '@/config/app.config'
 
 const props = defineProps({
     item: {
@@ -46,6 +47,8 @@ const props = defineProps({
 })
 
 const onlyOneChild = computed(() => {
+    // 如果全局配置禁止提升，或者没有子菜单，直接返回 null
+    if (!APP_CONFIG.promoteSingleChild) return null
     if (props.item.children && props.item.children.length === 1) {
         return props.item.children[0]
     }

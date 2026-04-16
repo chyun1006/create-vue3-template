@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-qa": "vite build --mode qa",
+    "build-uat": "vite build --mode uat",
     "build-product": "vite build --mode product",
     "build-csuat": "vite build --mode csuat",
     "preview": "vite preview",
@@ -23,8 +25,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "5.0.0",
-    "@vitejs/plugin-legacy": "^5.3.0",
-    "terser": "^5.27.0",
+    "@vitejs/plugin-legacy": "5.3.0",
+    "terser": "5.27.0",
     "autoprefixer": "10.4.0",
     "eslint": "8.56.0",
     "eslint-plugin-vue": "9.19.0",

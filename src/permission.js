@@ -1,13 +1,8 @@
 import router from './router'
 import sso from './utils/sso'
-import { asyncRoutes } from './router'
+import { asyncRoutes, defaultRoutes } from './router'
 import { useUserStore } from './stores/user'
 import { buildAuthTree, generateFinalRoutes } from '@/utils/routeHelper'
-
-// 以下三行代码是测试用，不要可删除
-import homeRoutes from '@/router/moduels/home'
-import demoRoutes from '@/router/moduels/demo'
-const defaultRoutes = [...homeRoutes, ...demoRoutes]
 
 router.beforeEach(async (to) => {
     console.log('路由守卫:', to.path)
@@ -44,7 +39,7 @@ router.beforeEach(async (to) => {
             const finalRoutesTree = generateFinalRoutes(authTree, asyncRoutes)
             console.log('生成的全新层级路由树:', finalRoutesTree)
             const allRoutes = []
-            if (defaultRoutes?.length) {
+            if (import.meta.env.DEV && defaultRoutes?.length) {
                 allRoutes.push(...defaultRoutes)
             }
             if (finalRoutesTree?.length) {

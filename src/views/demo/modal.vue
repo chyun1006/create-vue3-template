@@ -27,6 +27,18 @@
             <el-button type="primary" @click="openModalWithCallbacks"> 打开带回调的弹窗 </el-button>
             <div v-if="callbackResult" class="result"><strong>回调结果:</strong> {{ callbackResult }}</div>
         </div>
+        <div class="demo-section">
+            <h3>6. 无头弹窗</h3>
+            <el-button type="primary" @click="openNoHeaderModal"> 打开无头的弹窗 </el-button>
+        </div>
+        <div class="demo-section">
+            <h3>7. 无尾弹窗</h3>
+            <el-button type="primary" @click="openNoFooterModal"> 打开无尾的弹窗 </el-button>
+        </div>
+        <div class="demo-section">
+            <h3>8. 无头尾弹窗</h3>
+            <el-button type="primary" @click="openNoHeaderFooterModal"> 打开无头尾的弹窗 </el-button>
+        </div>
     </div>
 </template>
 
@@ -94,6 +106,32 @@ const openModalWithCallbacks = () => {
         onClose: () => {
             callbackResult.value = '用户取消了操作'
         }
+    })
+}
+
+// 6. 无头弹窗
+const openNoHeaderModal = () => {
+    modal.open(BasicContent, {
+        title: '',
+        showClose: true
+    })
+}
+
+// 7. 无尾弹窗
+const openNoFooterModal = () => {
+    modal.open(BasicContent, {
+        title: '无尾弹窗',
+        showClose: true,
+        footer: false
+    })
+}
+
+// 8. 无头尾弹窗
+const openNoHeaderFooterModal = () => {
+    modal.open(BasicContent, {
+        title: '',
+        showClose: true,
+        footer: false
     })
 }
 </script>

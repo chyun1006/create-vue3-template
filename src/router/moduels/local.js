@@ -1,12 +1,36 @@
-import { LayoutDashboard, Users, MessageSquare, Table2, Form, Search, Upload } from 'lucide-vue-next'
-
+import { Home, LayoutDashboard, Users, MessageSquare, Table2, Form, Search, Upload } from 'lucide-vue-next'
+// 本地路由，用于调试，测试环境会显示，上环境不会显示
 export default [
+    {
+        path: '/',
+        name: 'home-layout',
+        component: () => import('@/layouts/MainLayout.vue'),
+        meta: {
+            title: '首页-本地',
+            icon: Home,
+            requiresAuth: false
+        },
+        redirect: '/home',
+        children: [
+            {
+                path: '/home',
+                name: 'home',
+                component: () => import('@/views/Home.vue'),
+                meta: {
+                    title: '首页',
+                    icon: Home,
+                    requiresAuth: false,
+                    keepAlive: true
+                }
+            }
+        ]
+    },
     {
         path: '/demo',
         name: 'demo-layout',
         component: () => import('@/layouts/MainLayout.vue'),
         meta: {
-            title: 'demo',
+            title: 'demo-本地',
             icon: LayoutDashboard,
             requiresAuth: false
         },

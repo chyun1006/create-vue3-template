@@ -204,6 +204,9 @@ defineExpose({
 })
 </script>
 <style lang="scss" scoped>
+.el-table {
+    --el-table-tr-bg-color: #fff;
+}
 .table-pagination {
     margin-top: 20px;
     display: flex;

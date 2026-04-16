@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import homeRoutes from './moduels/home'
-import demoRoutes from './moduels/demo'
 import { flatAsyncRoutes } from './router.config'
+import localRoutes from './moduels/local'
+
+export const defaultRoutes = localRoutes
 
 export const asyncRoutes = [...flatAsyncRoutes]
 

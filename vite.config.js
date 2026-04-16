@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
@@ -9,45 +9,51 @@ import legacy from '@vitejs/plugin-legacy'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
-export default defineConfig({
-  plugins: [
-    vue(),
-    AutoImport({
-      resolvers: [ElementPlusResolver()],
-    }),
-    Components({
-      resolvers: [ElementPlusResolver()],
-    }),
-    legacy({
-      targets: ['chrome >= 109', 'edge >= 109', 'safari >= 13'],
-      renderLegacyChunks: true,
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime']
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src')
-    }
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        // 使用现代 API
-        api: 'modern-compiler',
-        // 自动导入全局变量和 mixins
-        additionalData: `
-          @use "@/assets/styles/variables.scss" as *;
-          @use "@/assets/styles/mixins.scss" as *;
-        `
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd())
+  const appBase = env.VITE_APP_BASE || '/'
+  return {
+    base: appBase,
+    plugins: [
+      vue(),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
+      legacy({
+        targets: ['chrome >= 109', 'edge >= 109', 'safari >= 13'],
+        renderLegacyChunks: true,
+        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      }),
+    ],
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, 'src')
       }
-    }
-  },
-  server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // 使用现代 API
+          api: 'modern-compiler',
+          // 自动导入全局变量和 mixins
+          additionalData: `
+            @use "@/assets/styles/variables.scss" as *;
+            @use "@/assets/styles/mixins.scss" as *;
+          `
+        }
+      }
+    },
+    server: {
+      port: 3000,
+      proxy: {
+        '/api': {
+          // target: 'http://air.uat.tcair.com',
+          target: 'http://air.qa.tcair.com',
+          changeOrigin: true
+        }
       }
     }
   }
