@@ -121,18 +121,24 @@ export function generateFinalRoutes(authTree, localRoutes) {
     }
 
     const controlledRoutes = traverse(authTree)
+    const freeRoutes = []
 
     // 新增逻辑：提取完全没有写 permission，即不需要权限的免死金牌路由，根据 parentCode 决定归属
     localRoutes.forEach(route => {
         const permCode = route.meta?.permission?.[0]
-        if (!permCode) {
-            // 这是免权限自由路由，准备挂载
+        const parentCode = route.meta?.parentCode
+        
+        // 改进：即使写了权限，但如果权限 ID 与父级 parentCode 一致，我们也允许它进入挂载流程
+        // 这解决了“首页”和“外层容器”共用同一个 SSO 权限点时的冲突问题
+        const isReusingParentPerm = permCode && parentCode === permCode
+
+        if (!permCode || isReusingParentPerm) {
+            // 这是免权限自由路由或复用父级权限的路由，准备挂载
             const freeRoute = { ...route, children: route.children || [] }
-            const parentCode = route.meta?.parentCode
             
             let mounted = false
             
-            // 如果你在本地写了归属目录的标记，就去受控大树里寻找这个老爹
+            // 如果你在本地写了归属目录的标记，就去受控大树里寻找这个父级
             if (parentCode) {
                 const mountToParent = (treeNodes) => {
                     for (const node of treeNodes) {
@@ -151,15 +157,15 @@ export function generateFinalRoutes(authTree, localRoutes) {
                 mounted = mountToParent(controlledRoutes)
             }
             
-            // 如果你没写归属爹，或者写了但在当前受控的大树里那个爹因为某些原因不在（比如它没被授权）
-            //那就作为流浪孤儿直接放在大树第一层
-            if (!mounted) {
-                controlledRoutes.push(freeRoute)
+            // 安全增强：只有当你没有写归属父（独立页面），且没有权限限制时，才允许在大树第一层作为孤儿显示
+            // 如果你写了归属父但没挂载成功（说明父没权限），则为了安全起见，该子页面也应当被丢弃
+            if (!mounted && !parentCode) {
+                freeRoutes.push(freeRoute)
             }
         }
     })
 
-    return controlledRoutes
+    return [...freeRoutes, ...controlledRoutes]
 }
 
 
@@ -188,3 +194,4 @@ export function getMenuConfig(routes = []) {
             return menuItem
         })
 }
+

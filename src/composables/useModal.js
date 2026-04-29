@@ -92,7 +92,8 @@ export const useModal = function () {
 
     let childApp = null
     let el = null
-
+    let timer = null
+    
     // 响应式状态
     const visible = ref(true)
     const confirmLoading = ref(false)
@@ -108,8 +109,11 @@ export const useModal = function () {
      */
     const close = () => {
         visible.value = false
+        
+        if (timer) clearTimeout(timer)
+        
         // 等待动画完成后再销毁
-        setTimeout(() => {
+        timer = setTimeout(() => {
             if (childApp) {
                 childApp.unmount()
                 childApp = null
@@ -118,6 +122,7 @@ export const useModal = function () {
                 el.remove()
                 el = null
             }
+            timer = null
         }, 300)
     }
 
@@ -190,6 +195,22 @@ export const useModal = function () {
      */
     const open = (component, options = {}) => {
         const { params = {}, onOk, onClose, ...dialogOptions } = options
+
+        // 如果有正在等待销毁的定时器，立即清除
+        if (timer) {
+            clearTimeout(timer)
+            timer = null
+        }
+
+        // 如果已经有正在运行的实例，先销毁（防止重复打开导致的 DOM 泄漏与状态共用）
+        if (childApp) {
+            childApp.unmount()
+            childApp = null
+        }
+        if (el) {
+            el.remove()
+            el = null
+        }
 
         // 保存回调函数
         callbacks = { onOk, onClose }
